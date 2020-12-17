@@ -17,9 +17,13 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    stream_title: {
+        type: String,
+        required: false
+    },
     date: {
         type: Date,
-        default: Date.now
+        required: false
     }
 });
 

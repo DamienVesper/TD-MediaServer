@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mongoose": "^5.11.8",
     "node-media-server": "^2.2.4"
   }
 }

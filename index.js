@@ -1,7 +1,5 @@
 const NodeMediaServer = require('node-media-server');
-const mongoose = require('mongoose');
-const User = require('./models/User');
-const db = require('./config/keys').mongoURI;
+const axios = require('axios');
 
 const config = {
     rtmp: {
@@ -49,18 +47,18 @@ nms.run();
 nms.on('prePublish', async (id, StreamPath, args) => {
     let stream_key = getStreamKeyFromStreamPath(StreamPath);
     console.log('[NodeEvent on prePublish]', `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`);
-
-    User.findOne({stream_key: stream_key}, (err, user) => {
-        if (!err) {
-            if (!user) {
+    axios.get('https://throwdown.tv/api/streamkey/'+stream_key)
+        .then(function (response) {
+            // Check if it works
+            if (!response.data.canstream) {
                 let session = nms.getSession(id);
                 session.reject();
-                console.log("Stream key does not exist")
-            } else {
-                console.log("Stream key does exist")
             }
-        }
-    });
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
 });
 
 const getStreamKeyFromStreamPath = (path) => {

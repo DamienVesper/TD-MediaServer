@@ -21,6 +21,34 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    stream_description: {
+        type: String,
+        required: false
+    },
+    avatar_url: {
+        type: String,
+        required: false
+    },
+    email_verification_key: {
+        type: String,
+        required: false
+    },
+    verification_status: {
+        type: Boolean,
+        required: false
+    },
+    donation_link: {
+        type: String,
+        required: false
+    },
+    can_stream: {
+        type: Boolean,
+        required: false
+    },
+    banned: {
+        type: Boolean,
+        required: false
+    },
     date: {
         type: Date,
         required: false

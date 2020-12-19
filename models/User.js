@@ -49,6 +49,10 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         required: false
     },
+    token: {
+        type: String,
+        required: false
+    },
     date: {
         type: Date,
         required: false

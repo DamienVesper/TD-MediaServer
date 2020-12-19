@@ -39,18 +39,16 @@ nms.run();
 nms.on('prePublish', async (id, StreamPath, args) => {
     let stream_key = getStreamKeyFromStreamPath(StreamPath);
     console.log('[NodeEvent on prePublish]', `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`);
-    axios.get('https://throwdown.tv/api/streamkey/'+stream_key)
+    axios.get('https://throwdown.tv/api/streamkey/' + stream_key)
         .then(function (response) {
             // Check if it works
             if (!response.data.canstream) {
                 let session = nms.getSession(id);
                 session.reject();
-<<<<<<< HEAD
                 console.log("Stream key does not exist " + stream_key)
             } else {
                 console.log("Stream key does exist " + stream_key)
-=======
->>>>>>> 09bc61b5aa1679bca172d8de0e9abab92d2775c8
+
             }
         })
         .catch(function (error) {

@@ -30,6 +30,11 @@ const config = {
                 dashFlags: '[f=dash:window_size=3:extra_window_size=5]'
             }
         ]
+    },
+    auth: {
+        api: true,
+        api_user: 'admin',
+        api_pass: 'loltdtv2021'
     }
 };
 

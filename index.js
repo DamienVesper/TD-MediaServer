@@ -35,10 +35,9 @@ const config = {
         ffmpeg: '/usr/bin/ffmpeg',
         tasks: [
             {
-                app: 'offline',
-                mode: 'static',
-                edge: 'throwdown.mp4',
-                name: 'throwdown'
+                app: 'live',
+                mode: 'pull',
+                edge: 'throwdown.mp4'
             }
         ]
     },

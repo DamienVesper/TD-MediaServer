@@ -31,6 +31,17 @@ const config = {
             }
         ]
     },
+    relay: {
+        ffmpeg: '/usr/bin/ffmpeg',
+        tasks: [
+            {
+                app: 'offline',
+                mode: 'static',
+                edge: 'throwdown.mp4',
+                name: 'throwdown'
+            }
+        ]
+    },
     auth: {
         api: true,
         api_user: 'admin',
@@ -53,7 +64,6 @@ nms.on('prePublish', async (id, StreamPath, args) => {
                 console.log("Stream key does not exist " + stream_key)
             } else {
                 console.log("Stream key does exist " + stream_key)
-
             }
         })
         .catch(function (error) {

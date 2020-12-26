@@ -31,16 +31,6 @@ const config = {
             }
         ]
     },
-    relay: {
-        ffmpeg: '/usr/bin/ffmpeg',
-        tasks: [
-            {
-                app: 'live',
-                mode: 'pull',
-                edge: 'throwdown.mp4'
-            }
-        ]
-    },
     auth: {
         api: true,
         api_user: 'admin',

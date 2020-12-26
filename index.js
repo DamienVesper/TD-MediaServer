@@ -60,6 +60,10 @@ nms.on('prePublish', async (id, StreamPath, args) => {
             console.log(error);
         })
 });
+nms.on('donePlay', (id, StreamPath, args) => {
+    let session = nms.getSession(id);
+    session.reject();
+});
 
 const getStreamKeyFromStreamPath = (path) => {
     let parts = path.split('/');

@@ -33,7 +33,7 @@ const config = {
     },
     auth: {
         play: true,
-        publish: true,
+        publish: false,
         secret: 'XDnigger123123123',
         api: true,
         api_user: 'admin',

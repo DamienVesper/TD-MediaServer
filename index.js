@@ -19,18 +19,6 @@ const config = {
         key:'./throwdown.key',
         cert:'./throwdown.crt',
     },
-    trans: {
-        ffmpeg: '/usr/bin/ffmpeg',
-        tasks: [
-            {
-                app: 'live',
-                hls: true,
-                hlsFlags: '[hls_time=2:hls_list_size=3:hls_flags=delete_segments]',
-                dash: false,
-                dashFlags: '[f=dash:window_size=3:extra_window_size=5]'
-            }
-        ]
-    },
     auth: {
         play: false,
         publish: false,

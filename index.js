@@ -32,6 +32,8 @@ const config = {
         ]
     },
     auth: {
+        play: true,
+        secret: 'XDnigger123123123',
         api: true,
         api_user: 'admin',
         api_pass: 'loltdtv2021'

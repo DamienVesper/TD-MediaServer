@@ -32,7 +32,7 @@ const config = {
         ]
     },
     auth: {
-        play: true,
+        play: false,
         publish: false,
         secret: 'XDnigger123123123',
         api: true,

@@ -96,8 +96,20 @@ var ssl_options = {
 app.get('/stream/:username', (req, res) => {
     User.findOne({username: req.params.username}).then(user => {
         if (user) {
-            var streampath = 'https://' + req.hostname + '/live/' + user.stream_key + '.flv'
-            https.request(streampath).pipe(res)
+            axios.get('http://localhost/api/streams/live/' + user.stream_key, { auth: { username: 'admin', password: 'loltdtv2021' } })
+                .then(function (response) {
+                    // Check if it works
+                    if (!response.data.canstream) {
+                        res.send('no')
+                    } else {
+                        var streampath = 'https://' + req.hostname + '/live/' + user.stream_key + '.flv'
+                        https.request(streampath).pipe(res)
+                    }
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
         }
     })
 })

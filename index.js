@@ -26,6 +26,16 @@ const config = {
         api: true,
         api_user: 'admin',
         api_pass: 'loltdtv2021'
+    },
+    trans: {
+        ffmpeg: '/usr/bin/ffmpeg',
+        tasks: [
+            {
+                app: 'live',
+                mp4: true,
+                mp4Flags: '[movflags=frag_keyframe+empty_moov]',
+            }
+        ]
     }
 };
 

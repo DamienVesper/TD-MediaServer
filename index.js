@@ -1,10 +1,14 @@
 const NodeMediaServer = require('node-media-server');
+const mongoose = require('mongoose');
 const axios = require('axios');
+const express = require('express');
+const fs = require('fs')
+const http = require('http');
+const https = require('https');
+const app = express()
+const User = require('./models/User');
 
 const config = {
-    server: {
-        secret: "kjVkuti2xAyF3JGCzSZTk0NiggERYWM5JhI9mgQW4rytXc"
-    },
     rtmp: {
         port: 1935,
         chunk_size: 60000,
@@ -23,9 +27,6 @@ const config = {
         cert:'./throwdown.crt',
     },
     auth: {
-        play: false,
-        publish: false,
-        secret: 'XDnigger123123123',
         api: true,
         api_user: 'admin',
         api_pass: 'loltdtv2021'
@@ -74,3 +75,42 @@ const getStreamKeyFromStreamPath = (path) => {
     let parts = path.split('/');
     return parts[parts.length - 1];
 };
+
+//VIDEO SERVING EXPRESS
+
+const db = require('./config/keys').mongoURI;
+
+mongoose
+    .connect(
+        db,
+        { useNewUrlParser: true ,useUnifiedTopology: true}
+    )
+    .then(() => console.log('MongoDB Connected'))
+    .catch(err => console.log(err));
+
+var ssl_options = {
+    key: fs.readFileSync( './throwdown.key' ),
+    cert: fs.readFileSync( './throwdown.crt' )
+}
+
+app.get('/stream/:username', (req, res) => {
+    User.findOne({username: req.params.username}).then(user => {
+        if (user) {
+            var path = req.hostname + '/live/' + user.stream_key + '.flv'
+            const stat = fs.statSync(path)
+            const fileSize = stat.size
+            const head = {
+                'Content-Length': fileSize,
+                'Content-Type': 'video/x-flv',
+            }
+            res.writeHead(200, head)
+            fs.createReadStream(path).pipe(res)
+        }
+    })
+})
+
+var httpServer = http.createServer(app)
+var httpsServer = https.createServer(ssl_options, app);
+
+httpServer.listen(8080);
+httpsServer.listen(8443);

@@ -2,6 +2,9 @@ const NodeMediaServer = require('node-media-server');
 const axios = require('axios');
 
 const config = {
+    server: {
+        secret: "kjVkuti2xAyF3JGCzSZTk0NiggERYWM5JhI9mgQW4rytXc"
+    },
     rtmp: {
         port: 1935,
         chunk_size: 60000,

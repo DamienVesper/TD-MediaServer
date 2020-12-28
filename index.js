@@ -23,7 +23,7 @@ const config = {
         cert:'./throwdown.crt',
     },
     auth: {
-        play: false,
+        play: true,
         publish: false,
         secret: 'XDnigger123123123',
         api: true,

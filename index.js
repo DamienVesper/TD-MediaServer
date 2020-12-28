@@ -99,7 +99,7 @@ app.get('/stream/:username', (req, res) => {
             axios.get('http://localhost/api/streams/live/' + user.stream_key, { auth: { username: 'admin', password: 'loltdtv2021' } })
                 .then(function (response) {
                     // Check if it works
-                    if (!response.data.isLive) {
+                    if (!response.data.canstream) {
                         res.send('no')
                     } else {
                         var streampath = 'https://' + req.hostname + '/live/' + user.stream_key + '.flv'

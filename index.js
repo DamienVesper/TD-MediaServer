@@ -96,8 +96,8 @@ var ssl_options = {
 app.get('/stream/:username', (req, res) => {
     User.findOne({username: req.params.username}).then(user => {
         if (user) {
-            var streampath = req.hostname + '/live/' + user.stream_key + '.flv'
-            res.sendFile('streampath')
+            var streampath = 'https://' + req.hostname + '/live/' + user.stream_key + '.flv'
+            https.request(streampath).pipe(res)
         }
     })
 })

@@ -96,15 +96,8 @@ var ssl_options = {
 app.get('/stream/:username', (req, res) => {
     User.findOne({username: req.params.username}).then(user => {
         if (user) {
-            var path = req.hostname + '/live/' + user.stream_key + '.flv'
-            const stat = fs.statSync(path)
-            const fileSize = stat.size
-            const head = {
-                'Content-Length': fileSize,
-                'Content-Type': 'video/x-flv',
-            }
-            res.writeHead(200, head)
-            fs.createReadStream(path).pipe(res)
+            var streampath = req.hostname + '/live/' + user.stream_key + '.flv'
+            res.sendFile('streampath')
         }
     })
 })

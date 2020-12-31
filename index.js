@@ -22,9 +22,6 @@ const config = {
         key:'./throwdown.key',
         cert:'./throwdown.crt',
     },
-    auth: {
-        api: true,
-    },
 };
 
 var nms = new NodeMediaServer(config)

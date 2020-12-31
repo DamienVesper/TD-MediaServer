@@ -52,6 +52,21 @@ nms.on('prePublish', async (id, StreamPath, args) => {
         })
 });
 
+setInterval(function(){
+    axios.get('https://throwdown.tv/api/streamkey/' + stream_key)
+        .then(function (response) {
+            // Check if it works
+            if (response.data.canstream === false) {
+                let session = nms.getSession(id);
+                session.reject();
+            }
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+}, 10000)
+
 nms.on('donePlay', (id, StreamPath, args) => {
     let session = nms.getSession(id);
     session.reject();

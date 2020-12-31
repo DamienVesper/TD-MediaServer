@@ -23,12 +23,7 @@ const config = {
         cert:'./throwdown.crt',
     },
     auth: {
-        play: false,
-        publish: false,
-        secret: 'XDnigger123123123',
         api: true,
-        api_user: 'admin',
-        api_pass: 'loltdtv2021'
     },
 };
 

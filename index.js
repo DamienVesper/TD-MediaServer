@@ -32,24 +32,8 @@ const config = {
         tasks: [
             {
                 app: 'live',
-                vc: "copy",
-                vcParam: [
-                    '-vf',
-                    "'scale=1280:-1'",
-                    '-b:v',
-                    '-preset',
-                    'fast',
-                    '-profile:v',
-                    'baseline',
-                    '-bufsize',
-                    '2100k',
-                    '-tune',
-                    'zerolatency',
-                ],
                 hls: true,
                 hlsFlags: '[hls_time=2:hls_list_size=3:hls_flags=delete_segments]',
-                dash: true,
-                dashFlags: '[f=dash:window_size=3:extra_window_size=5]'
             }
         ]
     },

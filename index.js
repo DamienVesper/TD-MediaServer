@@ -32,41 +32,25 @@ const config = {
         tasks: [
             {
             app: 'live',
+            vc: "copy",
+            vcParam: [
+                '-vf',
+                "'scale=1280:-1'",
+                '-b:v',
+                '-preset',
+                'fast',
+                '-profile:v',
+                'baseline',
+                '-bufsize',
+                '2100k',
+                '-tune',
+                'zerolatency',
+            ],
             hls: true,
             hlsFlags: '[hls_time=2:hls_list_size=3:hls_flags=delete_segments]',
-            dash: true,
-            dashFlags: '[f=dash:window_size=3:extra_window_size=5]'
             }
         ]
     },
-    fission: {
-        ffmpeg: '/usr/bin/ffmpeg',
-        tasks: [
-            {
-                rule: "stream/*",
-                model: [
-                    {
-                        ab: "128k",
-                        vb: "1000k",
-                        vs: "1280x720",
-                        vf: "30",
-                    },
-                    {
-                        ab: "96k",
-                        vb: "800k",
-                        vs: "854x480",
-                        vf: "30",
-                    },
-                    {
-                        ab: "96k",
-                        vb: "600k",
-                        vs: "640x360",
-                        vf: "30",
-                    },
-                ]
-            },
-        ]
-    }
 };
 
 var nms = new NodeMediaServer(config)

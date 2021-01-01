@@ -43,7 +43,7 @@ const config = {
         ffmpeg: '/usr/bin/ffmpeg',
         tasks: [
             {
-                rule: "live/*",
+                rule: "stream/*",
                 model: [
                 {
                     ab: "128k",

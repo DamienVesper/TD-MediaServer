@@ -28,7 +28,7 @@ const config = {
         api_pass: 'loltdtv2021'
     },
     trans: {
-        ffmpeg: '/usr/local/bin/ffmpeg',
+        ffmpeg: '/usr/bin/ffmpeg',
         tasks: [
             {
             app: 'live',

@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.0",
-    "node-media-server": "^2.2.4"
+    "axios": "^0.21.1",
+    "mongoose": "^5.11.11",
+    "node-media-server": "^2.2.4",
+    "nodemailer": "^6.4.17"
   }
 }

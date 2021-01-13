@@ -48,8 +48,8 @@ let transporter = nodemailer.createTransport({
 nms.on('prePublish', async (id, StreamPath, args) => {
     let stream_key = getStreamKeyFromStreamPath(StreamPath);
     console.log('[NodeEvent on prePublish]', `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`);
-    axios.get('https://throwdown.tv/api/streamkey/' + stream_key)
-        .then(function (response) {
+    await axios.get('https://throwdown.tv/api/streamkey/' + stream_key)
+        .then(async function (response) {
             // Check if it works
             if (!response.data.canstream) {
                 let session = nms.getSession(id);

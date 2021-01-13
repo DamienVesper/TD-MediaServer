@@ -1,6 +1,7 @@
 const NodeMediaServer = require('node-media-server');
 const axios = require('axios');
 const User = require('./models/User')
+const nodemailer = require('nodemailer');
 
 const config = {
     server: {

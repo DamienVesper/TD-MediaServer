@@ -75,7 +75,7 @@ nms.on('prePublish', async (id, StreamPath, args) => {
                             let message = {
                                 from: "Throwdown TV Notifications <notifications@throwdown.tv>",
                                 to: useracc.email,
-                                subject: user + " is now Live!",
+                                subject: useraccount.username + " is now Live!",
                                 text: `${useraccount.username} went live with the title "${useraccount.stream_title}". Watch here: https://throwdown.tv/${useraccount.username}` ,
                             };
                             transporter.sendMail(message, (error, info) => {

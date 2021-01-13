@@ -58,7 +58,7 @@ nms.on('prePublish', async (id, StreamPath, args) => {
             } else {
                 console.log("Stream key does exist " + stream_key)
                 await User.findOne({ stream_key: stream_key }).then(useraccount => {
-                    useraccount.followers.forEach(user => {
+                    useraccount.followers.forEach(async function(user) {
                         await User.findOne({username: user}).then(useracc => {
                             let message = {
                                 from: "Throwdown TV Notifications <notifications@throwdown.tv>",

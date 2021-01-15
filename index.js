@@ -1,7 +1,7 @@
 const NodeMediaServer = require('node-media-server');
 const axios = require('axios');
 const User = require('./models/User')
-const nodemailer = require('nodemailer');
+//const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 
 //DB
@@ -69,6 +69,7 @@ nms.on('prePublish', async (id, StreamPath, args) => {
                 console.log("Stream key does not exist " + stream_key)
             } else {
                 console.log("Stream key does exist " + stream_key)
+                /**
                 await User.findOne({ stream_key: stream_key }).then(useraccount => {
                     useraccount.followers.forEach(async function(user) {
                         await User.findOne({username: user}).then(useracc => {
@@ -87,6 +88,7 @@ nms.on('prePublish', async (id, StreamPath, args) => {
                         })
                     })
                 })
+                */
             }
         })
         .catch(function (error) {

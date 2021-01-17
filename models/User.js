@@ -1,5 +1,15 @@
 const mongoose = require('mongoose');
 
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+ }
+
 const UserSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -13,11 +23,17 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    reset_link: {
+        type: String,
+        default: ''
+    },
     stream_key: {
         type: String,
+        default: makeid(32)
     },
     chat_key: {
         type: String,
+        default: makeid(64)
     },
     stream_title: {
         type: String,
@@ -30,13 +46,6 @@ const UserSchema = new mongoose.Schema({
     avatar_url: {
         type: String,
         default: "https://cdn.discordapp.com/attachments/736368923590525039/789419292214820894/defaulltpfp.png"
-    },
-    email_verification_key: {
-        type: String,
-    },
-    verification_status: {
-        type: Boolean,
-        default: false
     },
     donation_link: {
         type: String,

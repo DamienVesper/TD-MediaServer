@@ -1,19 +1,9 @@
 const NodeMediaServer = require('node-media-server');
 const axios = require('axios');
-const User = require('./models/User')
-const mongoose = require('mongoose');
 const systemconfig = require('./config/config.json')
 
 //DB
 const db = require('./config/keys').mongoURI;
-
-mongoose
-    .connect(
-        db,
-        { useNewUrlParser: true ,useUnifiedTopology: true}
-    )
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log(err));
 
 const config = {
     server: {

@@ -2,9 +2,6 @@ const NodeMediaServer = require('node-media-server');
 const axios = require('axios');
 const systemconfig = require('./config/config.json')
 
-//DB
-const db = require('./config/keys').mongoURI;
-
 const config = {
     server: {
         secret: "kjVkuti2xAyF3JGCzSZTk0NiggERYWM5JhI9mgQW4rytXc"

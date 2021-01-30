@@ -7,7 +7,7 @@ const rtmpConfig = require(`../config/rtmpConfig.js`);
 
 const server = new NodeMediaServer(rtmpConfig);
 
-// Log errors in a differnt color.
+// Log errors in a different color.
 process.on(`uncaughtException`, err => log(`red`, err.stack));
 
 // Start the server.

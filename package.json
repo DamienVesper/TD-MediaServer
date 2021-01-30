@@ -1,16 +1,41 @@
 {
-  "name": "throwdownmediaserver",
+  "name": "throwdown-rtmp",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "RTMP server for Throwdown.TV",
+  "main": "gruntfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "us01": "cross-env NODE_ENV=\"prod\" cross-env SERVER_NAME=\"us01\" pm2 start ./src/server.js",
+    "dev": "cross-env NODE_ENV=\"dev\" cross-env SERVER_NAME=\"test\" grunt dev",
+    "dev:lint": "eslint . --fix --ext .js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThrowdownTV/ThrowdownMediaServer.git"
+  },
+  "author": "DamienVesper",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThrowdownTV/ThrowdownMediaServer/issues"
+  },
+  "homepage": "https://github.com/ThrowdownTV/ThrowdownMediaServer#readme",
   "dependencies": {
     "axios": "^0.21.1",
-    "mongoose": "^5.11.11",
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
+    "grunt": "^1.3.0",
+    "grunt-concurrent": "^3.0.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-nodemon": "^0.4.2",
+    "https": "^1.0.0",
+    "mongoose": "^5.11.13",
     "node-media-server": "^2.2.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.18.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1"
   }
 }

@@ -22,14 +22,19 @@ server.on(`prePublish`, async (id, streamer, streamKey) => {
 
         // If the person cannot stream or the credentials were not verified by the server, then reject the session request.
         if (!data.canStream || !data.verified) {
-            session.reject();
             log(`cyan`, `User attempted to stream with invalid stream key.`);
+            return session.reject();
         }
         else log(`magenta`, `User established to stream with valid stream key.`);
     }).catch(() => {
         log(`red`, `Failed to verify streamer.`);
         session.reject();
     });
+});
+
+server.on(`donePlay`, id => {
+    const session = server.getSession(id);
+    session.reject();
 });
 
 // Export server.

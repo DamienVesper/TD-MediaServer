@@ -2,6 +2,7 @@ require(`dotenv`).config();
 const config = require(`./config.js`);
 
 const rtmpConfig = {
+    logType: 3,
     server: {
         secret: process.env.RTMP_TOKEN
     },

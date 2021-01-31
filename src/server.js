@@ -13,6 +13,7 @@ process.on(`uncaughtException`, err => log(`red`, err.stack));
 // Start the server.
 server.run();
 
+
 server.on(`prePublish`, async (id, streamer, streamKey) => {
     if (!id || !streamer || !streamKey) return;
 

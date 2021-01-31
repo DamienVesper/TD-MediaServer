@@ -1,4 +1,6 @@
+require(`dotenv`).config();
 const pjson = require(`../package.json`);
+
 const config = {
     mode: process.env.NODE_ENV,
     ssl: process.env.NODE_ENV === `prod`,

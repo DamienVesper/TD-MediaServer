@@ -14,7 +14,6 @@ const rtmpConfig = {
     },
     http: {
         port: config.ports.webfront,
-        mediaroot: `./media`,
         allow_origin: `*`
     },
     auth: {

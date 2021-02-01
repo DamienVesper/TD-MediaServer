@@ -10,7 +10,8 @@ const config = {
         webfront: process.env.NODE_ENV === `prod` ? 8945 : 3000,
         webfrontHttps: 8950,
         server: 1935
-    }
+    },
+    webfrontName: `throwdown.tv`
 };
 
 config.ssl = {

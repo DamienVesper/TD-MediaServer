@@ -24,7 +24,7 @@ server.on(`prePublish`, async (id, StreamPath, args) => {
                 console.log(`Stream key does not exist ${streamKey}`);
             } else {
                 console.log(`Stream key does exist ${streamKey}`);
-                await axios.get(`https://throwdown.tv/api/send_notification_email/${config.notificationAPIKey}/${response.data.username}`);
+                await axios.get(`https://throwdown.tv/api/send_notification_email/${systemconfig.notificationapikey}/${response.data.username}`);
             }
         })
         .catch((error) => {

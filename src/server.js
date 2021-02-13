@@ -13,8 +13,8 @@ process.on(`uncaughtException`, err => log(`red`, err.stack));
 // Start the server.
 server.run();
 
-server.on(`prePublish`, async (id, streamer, streamKey) => {
-    if (!id || !streamer || !streamKey) return;
+server.on(`prePublish`, async (id, streamPath, args) => {
+    if (!id || !streamPath) return;
 
     const session = server.getSession(id);
     axios.get(`https://${config.webfrontName}/api/stream-key/${streamKey}`).then(res => {

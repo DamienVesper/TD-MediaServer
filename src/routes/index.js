@@ -1,6 +1,7 @@
 const express = require(`express`);
 const router = express.Router();
 const config = require(`../../config/config.js`);
+const axios = require(`axios`);
 
 // Landing page.
 router.get(`/stream/:streamer`, async (req, res) => {

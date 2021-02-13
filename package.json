@@ -32,7 +32,8 @@
     "http": "^0.0.1-security",
     "https": "^1.0.0",
     "mongoose": "^5.11.13",
-    "node-media-server": "^2.2.4"
+    "node-media-server": "^2.2.4",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

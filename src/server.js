@@ -73,7 +73,7 @@ const webserver = config.mode === `dev`
     }, app);
 
 // Bind the webfront to defined port.
-webserver.listen(config.ports.webfront, () => log(`green`, `Webfront bound to port ${config.ports.webfront}.`));
+webserver.listen(config.ports.webfrontHttps, () => log(`green`, `Webfront bound to port ${config.ports.webfrontHttps}.`));
 
 // Export server.
 module.exports = server;

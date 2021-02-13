@@ -18,8 +18,6 @@ server.on(`prePublish`, async (id, streamPath, args) => {
 
     const streamkey = getStreamKeyFromStreamPath(streamPath);
 
-    console.log(`STREAM KEY: ${streamPath}`)
-
     const session = server.getSession(id);
     axios.get(`https://${config.webfrontName}/api/stream-key/${streamkey}`).then(res => {
         const data = res.data;
@@ -31,7 +29,7 @@ server.on(`prePublish`, async (id, streamPath, args) => {
 
         // If the person cannot stream or the credentials were not verified by the server, then reject the session request.
         if (data.isSuspended || !data.verified) {
-            log(`cyan`, `User attempted to stream while being unverified or suspended.`);
+            log(`red`, `User attempted to stream while being unverified or suspended.`);
             return session.reject();
         }
         log(`magenta`, `User established to stream with valid stream key.`);

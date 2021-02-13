@@ -10,7 +10,7 @@ const config = {
         webfront: process.env.NODE_ENV === `prod` ? 8945 : 3000,
         webfrontHttps: 8950,
         server: 1935,
-        nmsHttp: 8946,
+        nmsHttp: process.env.NODE_ENV === `prod` ? 8946 : 3030,
         nmsHttps: 8951
     },
     webfrontName: `beta.throwdown.tv`

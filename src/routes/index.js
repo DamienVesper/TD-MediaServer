@@ -2,7 +2,7 @@ const express = require(`express`);
 const router = express.Router();
 const config = require(`../../config/config.js`);
 const axios = require(`axios`);
-const request = require(`request`);
+const http = require(`http`);
 
 // Index page.
 router.get(`/`, async (req, res) => { res.redirect(`https://${config.webfrontName}`); });

@@ -28,12 +28,8 @@ server.on(`prePublish`, async (id, streamPath, args) => {
         }
 
         // If the person cannot stream or the credentials were not verified by the server, then reject the session request.
-        if (data.isSuspended) {
-            log(`red`, `User attempted to stream while being suspended.`);
-            return session.reject();
-        }
-        if (!data.verified) {
-            log(`red`, `User attempted to stream while being unverified.`);
+        if (data.isSuspended || data.verified === false) {
+            log(`red`, `User attempted to stream while being suspended or unverified.`);
             return session.reject();
         }
         log(`magenta`, `User established to stream with valid stream key.`);

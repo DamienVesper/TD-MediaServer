@@ -1,24 +1,14 @@
+require(`dotenv`).config();
+
 const NodeMediaServer = require(`node-media-server`);
 const log = require(`./utils/log.js`);
 const axios = require(`axios`);
-const express = require(`express`);
-const cors = require(`cors`);
-const http = require(`http`);
-const https = require(`https`);
-const fs = require(`fs`);
-
-const app = express();
 
 const config = require(`../config/config.js`);
 const rtmpConfig = require(`../config/rtmpConfig.js`);
 
 const server = new NodeMediaServer(rtmpConfig);
-
-// Express
-app.use(cors());
-
-// Routes
-app.use(`/`, require(`./routes/index`));
+require(`./webfront.js`);
 
 // Log errors in a different color.
 process.on(`uncaughtException`, err => log(`red`, err.stack));
@@ -61,19 +51,6 @@ const getStreamKeyFromStreamPath = (path) => {
     const parts = path.split(`/`);
     return parts[parts.length - 1];
 };
-
-// Create the webfront.
-const webserver = config.mode === `dev`
-    ? http.createServer(app)
-    : https.createServer({
-        key: fs.readFileSync(config.ssl.keyPath),
-        cert: fs.readFileSync(config.ssl.certPath),
-        requestCert: false,
-        rejectUnauthorized: false
-    }, app);
-
-// Bind the webfront to defined port.
-webserver.listen(config.ports.webfrontHttps, () => log(`green`, `Webfront bound to port ${config.ports.webfrontHttps}.`));
 
 // Export server.
 module.exports = server;

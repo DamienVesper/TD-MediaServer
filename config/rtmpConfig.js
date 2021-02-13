@@ -13,7 +13,7 @@ const rtmpConfig = {
         ping: 30
     },
     http: {
-        port: config.ports.nmsHttp,
+        port: config.ports.nmsHTTP,
         allow_origin: `*`
     },
     auth: {
@@ -25,7 +25,7 @@ const rtmpConfig = {
 
 if (config.mode === `prod`) {
     rtmpConfig.https = {
-        port: config.ports.rtmpHttps,
+        port: config.ports.rtmpHTTPS,
         key: config.ssl.keyPath,
         cert: config.ssl.certPath
     };

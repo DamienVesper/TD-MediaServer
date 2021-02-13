@@ -16,8 +16,10 @@ server.run();
 server.on(`prePublish`, async (id, streamPath, args) => {
     if (!id || !streamPath) return;
 
+    console.log(`STREAM KEY: ${streamPath}`)
+
     const session = server.getSession(id);
-    axios.get(`https://${config.webfrontName}/api/stream-key/${streamKey}`).then(res => {
+    axios.get(`https://${config.webfrontName}/api/stream-key/${streamPath}`).then(res => {
         const data = res.data;
 
         if (!data) {

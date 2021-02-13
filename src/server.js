@@ -17,7 +17,7 @@ server.on(`prePublish`, async (id, streamer, streamKey) => {
     if (!id || !streamer || !streamKey) return;
 
     const session = server.getSession(id);
-    axios.get(`https://${config.webfrontName}/api/verifyStreamer?name=${streamer}&key=${streamKey}`).then(res => {
+    axios.get(`https://${config.webfrontName}/api/${streamKey}`).then(res => {
         const data = res.data;
 
         // If the person cannot stream or the credentials were not verified by the server, then reject the session request.

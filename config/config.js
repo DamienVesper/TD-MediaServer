@@ -11,7 +11,7 @@ const config = {
         webfrontHttps: 8950,
         server: 1935
     },
-    webfrontName: `throwdown.tv`
+    webfrontName: `beta.throwdown.tv`
 };
 
 config.ssl = {

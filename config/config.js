@@ -9,7 +9,9 @@ const config = {
     ports: {
         webfront: process.env.NODE_ENV === `prod` ? 8945 : 3000,
         webfrontHttps: 8950,
-        server: 1935
+        server: 1935,
+        nmsHttp: 8946,
+        nmsHttps: 8951
     },
     webfrontName: `beta.throwdown.tv`
 };

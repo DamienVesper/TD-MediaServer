@@ -14,7 +14,7 @@ const cors = require(`cors`);
 app.use(cors({
     origin: config.mode === `prod`
         ? config.webfrontName
-        : `http://localhost:8080`
+        : config.devWebfront
 }));
 
 // Middleware

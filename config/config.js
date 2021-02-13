@@ -12,12 +12,15 @@ const config = {
         webfront: process.env.NODE_ENV === `prod` ? 8945 : 5000,
         server: 1935
     },
-    webfrontName: `beta.throwdown.tv`
+    webfrontName: `beta.throwdown.tv`,
+    devWebfront: `localhost:8080`
 };
 
 config.ssl = {
     keyPath: `/etc/letsencrypt/live/${config.domain}/privkey.pem`,
     certPath: `/etc/letsencrypt/live/${config.domain}/fullchain.pem`
 };
+
+config.webPath = config.mode === `prod` ? `https://${config.webfrontName}` : `http://${config.devWebfront}`;
 
 module.exports = config;

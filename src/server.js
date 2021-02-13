@@ -16,10 +16,12 @@ server.run();
 server.on(`prePublish`, async (id, streamPath, args) => {
     if (!id || !streamPath) return;
 
+    const streamkey = getStreamKeyFromStreamPath(streamPath);
+
     console.log(`STREAM KEY: ${streamPath}`)
 
     const session = server.getSession(id);
-    axios.get(`https://${config.webfrontName}/api/stream-key/${streamPath}`).then(res => {
+    axios.get(`https://${config.webfrontName}/api/stream-key/${streamkey}`).then(res => {
         const data = res.data;
 
         if (!data) {
@@ -43,6 +45,11 @@ server.on(`donePlay`, id => {
     const session = server.getSession(id);
     session.reject();
 });
+
+const getStreamKeyFromStreamPath = (path) => {
+    const parts = path.split(`/`);
+    return parts[parts.length - 1];
+};
 
 // Export server.
 module.exports = server;

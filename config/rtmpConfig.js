@@ -25,7 +25,7 @@ const rtmpConfig = {
 
 if (config.mode === `prod`) {
     rtmpConfig.https = {
-        port: config.ports.rtmpHTTPS,
+        port: config.ports.nmsHTTPS,
         key: config.ssl.keyPath,
         cert: config.ssl.certPath
     };

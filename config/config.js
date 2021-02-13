@@ -7,9 +7,9 @@ const config = {
     domain: `${process.env.SERVER_NAME}.throwdown.tv`,
     version: pjson.version,
     ports: {
-        nmsHTTP: process.env.NODE_ENV === `prod` ? 8945 : 3000,
-        nmsHTTPS: 8950,
-        webfront: process.env.NODE_ENV === `prod` ? 8945 : 5000,
+        nmsHTTP: process.env.NODE_ENV === `prod` ? 8940 : 3000,
+        nmsHTTPS: 8945,
+        webfront: process.env.NODE_ENV === `prod` ? 8950 : 5000,
         server: 1935
     },
     webfrontName: `beta.throwdown.tv`,

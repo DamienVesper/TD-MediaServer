@@ -11,11 +11,18 @@ const app = express();
 
 // Cross-Origin Resource Sharing
 const cors = require(`cors`);
+
+app.use(cors({
+    origin: `*`
+}));
+
+/**
 app.use(cors({
     origin: config.mode === `prod`
         ? config.webfrontName
         : config.devWebfront
 }));
+*/
 
 // Middleware
 const compression = require(`compression`);

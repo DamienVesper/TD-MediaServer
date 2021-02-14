@@ -63,7 +63,7 @@ server.on(`prePublish`, async (id, streamPath, args) => {
     });
 });
 
-server.on(`donePlay`, id => {
+server.on(`donePublish`, id => {
     const session = server.getSession(id);
     const streamerData = streams.find(stream => stream.id === id);
 

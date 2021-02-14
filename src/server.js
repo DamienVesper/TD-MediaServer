@@ -80,7 +80,7 @@ server.on(`donePublish`, (id, streamPath, args) => {
         }
         else {
             streams.splice(streams.indexOf(streamerData), 1);
-            log(`magenta`, `User established to stream with valid stream key.`);
+            log(`magenta`, `User has stopped streaming.`);
         }
     });
 

@@ -10,6 +10,9 @@ const rtmpConfig = require(`../config/rtmpConfig.js`);
 const server = new NodeMediaServer(rtmpConfig);
 require(`./webfront.js`);
 
+// Livestream array.
+const streams = [];
+
 // Log errors in a different color.
 process.on(`uncaughtException`, err => log(`red`, err.stack));
 
@@ -19,10 +22,10 @@ server.run();
 server.on(`prePublish`, async (id, streamPath, args) => {
     if (!id || !streamPath) return;
 
-    const streamkey = getStreamKeyFromStreamPath(streamPath);
+    const streamKey = getStreamKeyFromStreamPath(streamPath);
 
     const session = server.getSession(id);
-    axios.get(`${config.webPath}/api/stream-key/${streamkey}`).then(res => {
+    axios.get(`${config.webPath}/api/stream-key/${streamKey}`).then(res => {
         const data = res.data;
 
         if (!data) {
@@ -35,7 +38,25 @@ server.on(`prePublish`, async (id, streamPath, args) => {
             log(`red`, `User attempted to stream while being suspended or unverified.`);
             return session.reject();
         }
-        log(`magenta`, `User established to stream with valid stream key.`);
+
+        axios.post(`${config.webPath}/api/change-streamer-status`, {
+            streamer: data.username,
+            apiKey: process.env.FRONTEND_API_KEY,
+            streamerStatus: true
+        }).then(res => {
+            if (res.data.errors) {
+                session.reject();
+                log(`red`, res.data.errors);
+            }
+            else {
+                log(`magenta`, `User established to stream with valid stream key.`);
+                streams.push({
+                    id,
+                    streamKey,
+                    username: data.username
+                });
+            }
+        });
     }).catch(() => {
         log(`red`, `Failed to verify streamer.`);
         session.reject();
@@ -44,6 +65,23 @@ server.on(`prePublish`, async (id, streamPath, args) => {
 
 server.on(`donePlay`, id => {
     const session = server.getSession(id);
+    const streamerData = streams.find(stream => stream.id === id);
+
+    axios.post(`${config.webPath}/api/change-streamer-status`, {
+        streamer: streamerData.username,
+        apiKey: process.env.FRONTEND_API_KEY,
+        streamerStatus: true
+    }).then(res => {
+        if (res.data.errors) {
+            session.reject();
+            log(`red`, res.data.errors);
+        }
+        else {
+            streams.splice(streams.indexOf(streamerData), 1);
+            log(`magenta`, `User established to stream with valid stream key.`);
+        }
+    });
+
     session.reject();
 });
 

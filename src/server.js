@@ -63,12 +63,14 @@ server.on(`prePublish`, async (id, streamPath, args) => {
     });
 });
 
-server.on(`donePublish`, id => {
+server.on(`donePublish`, (id, streamPath, args) => {
+    const streamKey = getStreamKeyFromStreamPath(streamPath);
+
     const session = server.getSession(id);
     const streamerData = streams.find(stream => stream.id === id);
 
     axios.post(`${config.webPath}/api/change-streamer-status`, {
-        streamer: streamerData.username,
+        streamer: streamKey,
         apiKey: process.env.FRONTEND_API_KEY,
         streamerStatus: true
     }).then(res => {

@@ -12,7 +12,7 @@ const config = {
         webfront: process.env.NODE_ENV === `prod` ? 8950 : 5000,
         server: 1935
     },
-    webfrontName: `beta.throwdown.tv`,
+    webfrontName: `throwdown.tv`,
     devWebfront: `localhost:8080`
 };
 

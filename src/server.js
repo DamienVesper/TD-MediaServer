@@ -70,7 +70,7 @@ server.on(`donePublish`, id => {
     axios.post(`${config.webPath}/api/change-streamer-status`, {
         streamer: streamerData.username,
         apiKey: process.env.FRONTEND_API_KEY,
-        streamerStatus: true
+        streamerStatus: false
     }).then(res => {
         if (res.data.errors) {
             session.reject();

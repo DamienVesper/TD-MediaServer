@@ -17,7 +17,7 @@ const rtmpConfig = {
         allow_origin: `*`
     },
     auth: {
-        api: true,
+        api: false,
         api_user: `admin`,
         api_pass: process.env.RTMP_API_PASSWORD
     }

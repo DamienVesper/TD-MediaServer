@@ -36,12 +36,6 @@ server.on(`prePublish`, async (id, streamPath, args) => {
             return session.reject();
         }
         log(`magenta`, `User established to stream with valid stream key.`);
-        axios.post(`https://${config.webfrontName}/api/stream-status/${streamkey}/true/${process.env.FRONTEND_API_KEY}`)
-            .then(res => {
-                if (res.data.success.length > 0) log(`green`, `Changed Live Status of stream key ${streamkey}`);
-                else log(`red`, `Something went wrong changing Live Status of stream key ${streamkey}`);
-            })
-            .catch(err => log(`red`, `ERROR: ${err}`));
     }).catch(() => {
         log(`red`, `Failed to verify streamer.`);
         session.reject();

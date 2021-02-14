@@ -14,14 +14,7 @@ router.get(`/stream/:streamer`, async (req, res) => {
     const getStreamKey = await axios.get(`${config.webPath}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);
     if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
 
-    const externalReq = http.request({
-        host: `localhost:${config.nmsHTTP}`,
-        path: `/live/${getStreamKey.data.streamkey}.flv`
-    }, (externalRes) => {
-        res.setHeader(`content-disposition`, `attachment; filename=index.flv`);
-        externalRes.pipe(res);
-    });
-    externalReq.end();
+    http.get(`http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}.flv`, response => response.pipe(res));
 });
 
 module.exports = router;

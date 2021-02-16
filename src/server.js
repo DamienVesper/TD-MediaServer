@@ -49,7 +49,8 @@ server.on(`prePublish`, async (id, streamPath, args) => {
         axios.post(`${config.webPath}/api/change-streamer-status`, {
             streamer: data.username,
             apiKey: process.env.FRONTEND_API_KEY,
-            streamerStatus: true
+            streamerStatus: true,
+            rtmpServer: process.env.SERVER_NAME
         }).then(res => {
             if (res.data.errors) {
                 session.reject();

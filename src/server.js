@@ -2,6 +2,7 @@ require(`dotenv`).config();
 
 const NodeMediaServer = require(`node-media-server`);
 const log = require(`./utils/log.js`);
+const generateThumbnail = require(`./utils/generateThumbnail.js`);
 const axios = require(`axios`);
 
 const config = require(`../config/config.js`);
@@ -10,7 +11,8 @@ const fs = require(`fs`);
 
 const mediadirectory = `../media`;
 
-if (!fs.existsSync(mediadirectory)) fs.mkdirSync(mediadirectory);
+if (fs.existsSync(mediadirectory)) fs.rmdirSync(mediadirectory);
+else fs.mkdirSync(mediadirectory);
 
 const server = new NodeMediaServer(rtmpConfig);
 require(`./webfront.js`);
@@ -55,6 +57,7 @@ server.on(`prePublish`, async (id, streamPath, args) => {
             }
             else {
                 log(`magenta`, `User established to stream with valid stream key.`);
+                generateThumbnail(streamKey);
                 streams.push({
                     id,
                     streamKey,

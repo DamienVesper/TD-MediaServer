@@ -12,7 +12,7 @@ module.exports = async (streamkey) => {
         `-ss`, `00:00:01`,
         `-vframes`, `1`,
         `-vf`, `scale=-2:300`,
-        `media/snapshot_${streamkey}.png`
+        `media/${streamkey}.png`
     ];
 
     spawn(cmd, args, {

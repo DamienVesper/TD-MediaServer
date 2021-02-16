@@ -95,7 +95,8 @@ router.get(`/api/:streamer`, async (req, res) => {
     const getStreamData = await axios.get(`http://localhost:${config.ports.nmsHTTP}/api/streams/live/${getStreamKey.data.streamkey}`);
 
     const data = {
-        isLive: getStreamData.data.isLive
+        isLive: getStreamData.data.isLive,
+        viewers: getStreamData.data.viewers
     };
     res.json(data);
 });

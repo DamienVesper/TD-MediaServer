@@ -33,6 +33,7 @@
     "https": "^1.0.0",
     "mongoose": "^5.11.13",
     "node-media-server": "^2.2.4",
+    "path": "^0.12.7",
     "request": "^2.88.2"
   },
   "devDependencies": {

@@ -6,6 +6,11 @@ const axios = require(`axios`);
 
 const config = require(`../config/config.js`);
 const rtmpConfig = require(`../config/rtmpConfig.js`);
+const fs = require(`fs`);
+
+const mediadirectory = `../media`;
+
+if (!fs.existsSync(mediadirectory)) fs.mkdirSync(mediadirectory);
 
 const server = new NodeMediaServer(rtmpConfig);
 require(`./webfront.js`);

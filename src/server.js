@@ -87,7 +87,7 @@ server.on(`donePublish`, (id, streamPath, args) => {
             log(`red`, res.data.errors);
         }
         else {
-            fs.rmSync(`${mediadirectory}/${streamKey}.png`)
+            fs.rmSync(`${mediadirectory}/${streamKey}.png`);
             streams.splice(streams.indexOf(streamerData), 1);
             log(`magenta`, `User Disconnected.`);
         }

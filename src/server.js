@@ -72,9 +72,10 @@ server.on(`prePublish`, async (id, streamPath, args) => {
     });
 });
 
-server.on(`donePublish`, id => {
+server.on(`donePublish`, (id, streamPath, args) => {
     const session = server.getSession(id);
     const streamerData = streams.find(stream => stream.id === id);
+    const streamKey = getStreamKeyFromStreamPath(streamPath);
 
     axios.post(`${config.webPath}/api/change-streamer-status`, {
         streamer: streamerData.username,
@@ -86,6 +87,7 @@ server.on(`donePublish`, id => {
             log(`red`, res.data.errors);
         }
         else {
+            fs.rmSync(`${mediadirectory}/${streamKey}.png`)
             streams.splice(streams.indexOf(streamerData), 1);
             log(`magenta`, `User Disconnected.`);
         }

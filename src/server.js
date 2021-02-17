@@ -46,6 +46,11 @@ server.on(`prePublish`, async (id, streamPath, args) => {
             return session.reject();
         }
 
+        axios.post(`${config.webPath}/api/send-notifications`, {
+            streamer: data.username,
+            apiKey: process.env.NOTIFICATION_API_KEY
+        });
+
         axios.post(`${config.webPath}/api/change-streamer-status`, {
             streamer: data.username,
             apiKey: process.env.FRONTEND_API_KEY,

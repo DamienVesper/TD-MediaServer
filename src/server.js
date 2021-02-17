@@ -5,6 +5,7 @@ const log = require(`./utils/log.js`);
 const generateThumbnail = require(`./utils/generateThumbnail.js`);
 const axios = require(`axios`);
 const path = require(`path`);
+const rimraf = require(`rimraf`);
 
 const config = require(`../config/config.js`);
 const rtmpConfig = require(`../config/rtmpConfig.js`);
@@ -12,7 +13,7 @@ const fs = require(`fs`);
 
 const mediadirectory = `../media`;
 
-if (fs.existsSync(path.join(__dirname, `../media`))) fs.rmdirSync(path.join(__dirname, `../media`));
+if (fs.existsSync(path.join(__dirname, `../media`))) rimraf.sync(path.join(__dirname, `../media`));
 if (!fs.existsSync(path.join(__dirname, `../media`))) fs.mkdirSync(path.join(__dirname, `../media`));
 
 const server = new NodeMediaServer(rtmpConfig);

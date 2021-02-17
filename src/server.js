@@ -4,6 +4,7 @@ const NodeMediaServer = require(`node-media-server`);
 const log = require(`./utils/log.js`);
 const generateThumbnail = require(`./utils/generateThumbnail.js`);
 const axios = require(`axios`);
+const path = require(`path`);
 
 const config = require(`../config/config.js`);
 const rtmpConfig = require(`../config/rtmpConfig.js`);
@@ -11,8 +12,8 @@ const fs = require(`fs`);
 
 const mediadirectory = `../media`;
 
-if (fs.existsSync(__dirname, `../../media`)) fs.rmdirSync(__dirname, `../../media`);
-if (!fs.existsSync(__dirname, `../../media`)) fs.mkdirSync(__dirname, `../../media`);
+if (fs.existsSync(path.join(__dirname, `../media`))) fs.rmdirSync(__dirname, `../media`);
+if (!fs.existsSync(path.join(__dirname, `../media`))) fs.mkdirSync(__dirname, `../media`);
 
 const server = new NodeMediaServer(rtmpConfig);
 require(`./webfront.js`);

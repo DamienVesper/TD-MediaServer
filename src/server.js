@@ -11,8 +11,6 @@ const config = require(`../config/config.js`);
 const rtmpConfig = require(`../config/rtmpConfig.js`);
 const fs = require(`fs`);
 
-const mediadirectory = `../media`;
-
 if (fs.existsSync(path.join(__dirname, `../media`))) rimraf.sync(path.join(__dirname, `../media`));
 if (!fs.existsSync(path.join(__dirname, `../media`))) fs.mkdirSync(path.join(__dirname, `../media`));
 

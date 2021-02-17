@@ -1,11 +1,10 @@
 const express = require(`express`);
 const router = express.Router();
 const config = require(`../../config/config.js`);
-const generateSnapshot = require(`../utils/generateSnapshot.js`);
+const generateThumbnail = require(`../utils/generateThumbnail.js`);
 const axios = require(`axios`);
 const path = require(`path`);
 const http = require(`http`);
-const fs = require(`fs`);
 
 // Index page.
 router.get(`/`, async (req, res) => res.redirect(config.webPath));
@@ -26,10 +25,9 @@ router.get(`/snapshot/:streamer`, async (req, res) => {
     const getStreamKey = await axios.get(`https://${config.webfrontName}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);
     if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
     if (!getStreamKey.data.isLive) return res.sendFile(path.join(__dirname, `../../assets/thumbnail.png`));
-    if (fs.existsSync(path.join(__dirname, `../../media/snapshot_${getStreamKey.data.streamkey}.png`))) fs.rmSync(path.join(__dirname, `../../media/snapshot_${getStreamKey.data.streamkey}.png`));
-    await generateSnapshot(getStreamKey.data.streamkey);
+    generateThumbnail(getStreamKey.data.streamkey);
     setTimeout(() => {
-        res.sendFile(path.join(__dirname, `../../media/snapshot_${getStreamKey.data.streamkey}.png`));
+        res.sendFile(path.join(__dirname, `../../media/${getStreamKey.data.streamkey}.png`));
     }, 300);
 });
 

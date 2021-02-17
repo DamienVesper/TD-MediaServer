@@ -26,9 +26,11 @@ router.get(`/snapshot/:streamer`, async (req, res) => {
     const getStreamKey = await axios.get(`https://${config.webfrontName}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);
     if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
     if (!getStreamKey.data.isLive) return res.sendFile(path.join(__dirname, `../../assets/thumbnail.png`));
-    if (fs.existsSync(`../../media/snapshot_${getStreamKey.data.streamkey}.png`)) fs.rmSync(`../../media/snapshot_${getStreamKey.data.streamkey}.png`);
+    if (fs.existsSync(path.join(__dirname, `../../media/snapshot_${getStreamKey.data.streamkey}.png`))) fs.rmSync(path.join(__dirname, `../../media/snapshot_${getStreamKey.data.streamkey}.png`));
     await generateSnapshot(getStreamKey.data.streamkey);
-    res.sendFile(path.join(__dirname, `../../media/snapshot_${getStreamKey.data.streamkey}.png`));
+    setTimeout(() => {
+        res.sendFile(path.join(__dirname, `../../media/snapshot_${getStreamKey.data.streamkey}.png`));
+    }, 300);
 });
 
 // Stream Feed.

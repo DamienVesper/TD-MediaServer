@@ -11,8 +11,8 @@ const fs = require(`fs`);
 
 const mediadirectory = `../media`;
 
-if (fs.existsSync(mediadirectory)) fs.rmdirSync(mediadirectory);
-if (!fs.existsSync(mediadirectory)) fs.mkdirSync(mediadirectory);
+fs.rmdirSync(mediadirectory);
+fs.mkdirSync(mediadirectory);
 
 const server = new NodeMediaServer(rtmpConfig);
 require(`./webfront.js`);

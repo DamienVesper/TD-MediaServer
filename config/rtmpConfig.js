@@ -22,6 +22,16 @@ const rtmpConfig = {
         api_user: `admin`,
         api_pass: process.env.RTMP_API_PASSWORD
     },
+    trans: {
+        ffmpeg: `/usr/bin/ffmpeg`,
+        tasks: [
+            {
+                app: `live`,
+                hls: true,
+                hlsFlags: `[hls_time=2:hls_list_size=3:hls_flags=delete_segments]`
+            }
+        ]
+    },
     fission: {
         ffmpeg: `/usr/bin/ffmpeg`,
         tasks: [

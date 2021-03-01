@@ -18,6 +18,19 @@ router.get(`/thumbnail/:streamer`, async (req, res) => {
     res.sendFile(path.join(__dirname, `../../media/${getStreamKey.data.streamkey}.png`));
 });
 
+// Stream HLS.
+router.get(`/stream_hls/:streamer`, async (req, res) => {
+    const streamer = req.params.streamer.toLowerCase();
+
+    const getStreamKey = await axios.get(`https://${config.webfrontName}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);
+    if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
+
+    res.setHeader(`content-disposition`, `attachment; filename=index.m3u8`);
+
+    http.get(`http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}/index.m3u8`, response => response.pipe(res));
+});
+
+
 // Stream Feed.
 router.get(`/stream_source/:streamer`, async (req, res) => {
     const streamer = req.params.streamer.toLowerCase();

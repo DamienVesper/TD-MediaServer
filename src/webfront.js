@@ -11,10 +11,7 @@ const app = express();
 
 // Handle CORS.
 const cors = require(`cors`);
-const helmet = require(`helmet`);
-
 app.use(cors({ origin: `*` }));
-app.use(helmet({ contentSecurityPolicy: false }));
 
 // Middleware
 const compression = require(`compression`);

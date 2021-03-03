@@ -30,12 +30,11 @@
     "grunt-concurrent": "^3.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-nodemon": "^0.4.2",
+    "helmet": "^4.4.1",
     "https": "^1.0.0",
     "mongoose": "^5.11.13",
     "node-media-server": "^2.2.4",
-    "path": "^0.12.7",
-    "request": "^2.88.2",
-    "rimraf": "^3.0.2"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

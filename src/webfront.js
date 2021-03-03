@@ -9,20 +9,12 @@ const log = require(`./utils/log.js`);
 const express = require(`express`);
 const app = express();
 
-// Cross-Origin Resource Sharing
+// Handle CORS.
 const cors = require(`cors`);
+const helmet = require(`helmet`);
 
-app.use(cors({
-    origin: `*`
-}));
-
-/**
-app.use(cors({
-    origin: config.mode === `prod`
-        ? config.webfrontName
-        : config.devWebfront
-}));
-*/
+app.use(cors({ origin: `*` }));
+app.use(helmet({ contentSecurityPolicy: false }));
 
 // Middleware
 const compression = require(`compression`);

@@ -1,0 +1,17 @@
+[Unit]
+Description=mediaserver
+After=network.target 
+
+[Service]
+#This is why I fucking hate nvm Vesper!!!!!!!!!!!
+ExecStart=node /opt/MediaServer/src/server.js
+#ExecStop=/root/.nvm/versions/node/v15.8.0/bin/pm2 stop server
+#ExecReload=/root/.nvm/versions/node/v15.8.0/bin/pm2 reload server
+Restart=always 
+User=root
+Environment=NODE_ENV=prod
+Environment=SERVER_NAME=us01
+WorkingDirectory=/opt/MediaServer 
+
+[Install]
+WantedBy=multi-user.target

@@ -1,8 +1,7 @@
 const spawn = require(`child_process`).spawn;
-const rtmpConfig = require(`../../config/rtmpConfig.js`);
 const config = require(`../../config/config.js`);
 const log = require(`./log.js`);
-const cmd = rtmpConfig.trans.ffmpeg;
+const cmd = `/usr/bin/ffmeg`;
 
 module.exports = async (streamkey) => {
     log(`magenta`, `Generating Stream Thumbnail For: ${streamkey}`);

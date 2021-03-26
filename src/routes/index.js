@@ -3,7 +3,6 @@ const router = express.Router();
 const config = require(`../../config/config.js`);
 const axios = require(`axios`);
 const path = require(`path`);
-const fs = require(`fs`);
 const http = require(`http`);
 
 // Index page.
@@ -31,6 +30,7 @@ router.get(`/stream_source/:streamer`, async (req, res) => {
     http.get(`http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}.flv`, response => response.pipe(res));
 });
 
+/**
 // HLS
 router.get(`/stream_hls/:streamer`, async (req, res) => {
     const streamer = req.params.streamer.toLowerCase();
@@ -51,8 +51,6 @@ router.get(`/stream_hls/:streamer`, async (req, res) => {
         }
     });
 });
-
-/**
 
 // 720
 router.get(`/stream_720/:streamer`, async (req, res) => {

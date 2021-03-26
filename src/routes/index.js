@@ -30,6 +30,8 @@ router.get(`/stream_source/:streamer`, async (req, res) => {
     http.get(`http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}.flv`, response => response.pipe(res));
 });
 
+/**
+
 // 1080p
 router.get(`/stream_1080/:streamer`, async (req, res) => {
     const streamer = req.params.streamer.toLowerCase();
@@ -77,6 +79,8 @@ router.get(`/stream_360/:streamer`, async (req, res) => {
 
     http.get(`http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}_360.flv`, response => response.pipe(res));
 });
+
+*/
 
 // API
 router.get(`/api/:streamer`, async (req, res) => {

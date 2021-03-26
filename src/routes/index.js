@@ -45,7 +45,7 @@ router.get(`/stream_hls/:streamer`, async (req, res) => {
     fs.readFile(filePath, (error, content) => {
         res.writeHead(200, { 'Access-Control-Allow-Origin': `*` });
         if (error) {
-            res.send(`404`);
+            res.end();
         } else {
             res.end(content, `utf-8`);
         }

@@ -30,6 +30,7 @@ router.get(`/stream_source/:streamer`, async (req, res) => {
     http.get(`http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}.flv`, response => response.pipe(res));
 });
 
+// 1080p
 router.get(`/stream_1080/:streamer`, async (req, res) => {
     const streamer = req.params.streamer.toLowerCase();
 
@@ -41,6 +42,7 @@ router.get(`/stream_1080/:streamer`, async (req, res) => {
     http.get(`http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}_1080.flv`, response => response.pipe(res));
 });
 
+// 720
 router.get(`/stream_720/:streamer`, async (req, res) => {
     const streamer = req.params.streamer.toLowerCase();
 
@@ -52,6 +54,7 @@ router.get(`/stream_720/:streamer`, async (req, res) => {
     http.get(`http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}_720.flv`, response => response.pipe(res));
 });
 
+// 480
 router.get(`/stream_480/:streamer`, async (req, res) => {
     const streamer = req.params.streamer.toLowerCase();
 
@@ -63,6 +66,7 @@ router.get(`/stream_480/:streamer`, async (req, res) => {
     http.get(`http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}_480.flv`, response => response.pipe(res));
 });
 
+// 360
 router.get(`/stream_360/:streamer`, async (req, res) => {
     const streamer = req.params.streamer.toLowerCase();
 

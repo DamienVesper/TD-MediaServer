@@ -34,7 +34,8 @@
     "https": "^1.0.0",
     "mongoose": "^5.11.13",
     "node-media-server": "^2.2.4",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "serve-static": "^1.14.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

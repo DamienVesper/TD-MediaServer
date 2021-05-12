@@ -3,6 +3,9 @@ const config = require(`../config/config.js`);
 const http = require(`http`);
 const https = require(`https`);
 
+const path = require(`path`);
+const serveStatic = require(`serve-static`);
+
 const fs = require(`fs`);
 const log = require(`./utils/log.js`);
 
@@ -32,7 +35,7 @@ const indexRouter = require(`./routes/index.js`);
 app.use(indexRouter);
 
 // Static Directory
-app.use(express.static(`../media`));
+app.use(serveStatic(path.join(__dirname, `../media`)));
 
 // Create the webfront.
 const server = config.mode === `dev`

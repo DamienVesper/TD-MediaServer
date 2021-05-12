@@ -38,9 +38,7 @@ router.get(`/stream_hls/:streamer`, async (req, res) => {
     const getStreamKey = await axios.get(`https://${config.webfrontName}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);
     if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
 
-    res.setHeader(`content-disposition`, `attachment; filename=index.flv`);
-
-    const filePath = `media/live/${getStreamKey.data.streamkey}/index.m3u8`;
+    const filePath = `../../media/live/${getStreamKey.data.streamkey}/index.m3u8`;
 
     fs.readFile(filePath, (error, content) => {
         res.writeHead(200, { 'Access-Control-Allow-Origin': `*` });

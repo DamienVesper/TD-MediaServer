@@ -32,14 +32,16 @@ router.get(`/stream_flv/:streamer`, async (req, res) => {
     http.get(`http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}.flv`, response => response.pipe(res));
 });
 
-// HLS Feed.
-router.get(`/stream_hls/:streamer`, async (req, res) => {
+// DASH Feed.
+router.get(`/stream_dash/:streamer`, async (req, res) => {
     const streamer = req.params.streamer.toLowerCase();
 
     const getStreamKey = await axios.get(`https://${config.webfrontName}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);
     if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
 
-    res.send(`test`);
+    res.setHeader(`content-disposition`, `attachment; filename=index.flv`);
+
+    http.get(`http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}/index.mpd`, response => response.pipe(res));
 });
 
 // API

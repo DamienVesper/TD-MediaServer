@@ -21,7 +21,7 @@ router.get(`/thumbnail/:streamer`, async (req, res) => {
 });
 
 // FLV Feed.
-router.get(`/stream_source/:streamer`, async (req, res) => {
+router.get(`/stream_flv/:streamer`, async (req, res) => {
     const streamer = req.params.streamer.toLowerCase();
 
     const getStreamKey = await axios.get(`https://${config.webfrontName}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);

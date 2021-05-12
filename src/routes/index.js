@@ -40,8 +40,8 @@ router.get(`/stream_hls/:streamer`, async (req, res) => {
     const getStreamKey = await axios.get(`https://${config.webfrontName}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);
     if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
 
-    dynamicStatic.setPath(path.resolve(__dirname, `/media/live/${getStreamKey.data.streamkey}`));
-    res.sendFile(path.resolve(__dirname, `/media/live/${getStreamKey.data.streamkey}/index.m3u8`));
+    dynamicStatic.setPath(path.resolve(__dirname, `media/live/${getStreamKey.data.streamkey}`));
+    res.sendFile(path.resolve(__dirname, `media/live/${getStreamKey.data.streamkey}/index.m3u8`));
 });
 
 // API

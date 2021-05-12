@@ -39,7 +39,7 @@ router.get(`/stream_dash/:streamer`, async (req, res) => {
     const getStreamKey = await axios.get(`https://${config.webfrontName}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);
     if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
 
-    res.setHeader(`content-disposition`, `attachment; filename=index.flv`);
+    res.setHeader(`content-disposition`, `attachment; filename=index.mpd`);
 
     http.get(`http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}/index.mpd`, response => response.pipe(res));
 });

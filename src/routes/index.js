@@ -40,28 +40,22 @@ router.get(`/stream_hls/:streamer`, async (req, res) => {
 
     res.setHeader(`content-disposition`, `attachment; filename=index.flv`);
 
-    const filePath = `http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}/`;
+    const filePath = `http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}/index.m3u8`;
 
-    fs.stat(filePath, (err, stats) => {
-        if (!stats || err) {
-            res.status(404).end();
+    fs.readFile(filePath, (error, content) => {
+        res.writeHead(200, { 'Access-Control-Allow-Origin': `*` });
+        if (error) {
+            if (error.code === `ENOENT`) {
+                res.send(`404`);
+            }
+            else {
+                res.writeHead(500);
+                res.end(`Sorry, check with the site admin for error: ${error.code} ..\n`);
+                res.end();
+            }
         }
         else {
-            let fileExt = filePath.slice(filePath.lastIndexOf(`.`));
-            fileExt = fileExt && fileExt.toLowerCase() || fileExt;
-
-            switch (fileExt) {
-                case `.m3u8`:
-                    res.status(200).set(`Content-Type`, `application/vnd.apple.mpegurl`);
-                    fs.createReadStream(filePath).pipe(res);
-                    break;
-                case `.ts`:
-                    res.status(200).set(`Content-Type`, `video/MP2T`);
-                    fs.createReadStream(filePath).pipe(res);
-                    break;
-                default:
-                    res.status(400).send(`Unexpected file type ${fileExt}`);
-            }
+            res.end(content, `utf-8`);
         }
     });
 });

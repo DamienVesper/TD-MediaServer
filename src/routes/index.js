@@ -6,7 +6,13 @@ const path = require(`path`);
 const http = require(`http`);
 const fs = require(`fs`);
 const { app } = require(`../webfront.js`);
-const dynamicStatic = require(`express-dynamic-static`)();
+const serveStatic = require(`serve-static`);
+const contentDisposition = require(`content-disposition`);
+
+// Set header to force download
+function setHeaders (res, path) {
+    res.setHeader(`Content-Disposition`, contentDisposition(path));
+}
 
 // Index page.
 router.get(`/`, async (req, res) => res.redirect(config.webPath));
@@ -41,8 +47,13 @@ router.get(`/stream_hls/:streamer`, async (req, res) => {
     if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
 
     res.setHeader(`content-disposition`, `attachment; filename=index.m3u8`);
-    dynamicStatic.setPath(path.resolve(__dirname, `../../media/live/${getStreamKey.data.streamkey}`));
-    res.sendFile(path.resolve(__dirname, `../../media/live/${getStreamKey.data.streamkey}/index.m3u8`));
+
+    const serve = serveStatic(path.resolve(__dirname, `../../media/live/${getStreamKey.data.streamkey}`), {
+        index: false,
+        setHeaders: setHeaders
+    });
+
+    serve(req, res);
 });
 
 // API

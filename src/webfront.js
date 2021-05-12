@@ -32,7 +32,7 @@ const indexRouter = require(`./routes/index.js`);
 app.use(indexRouter);
 
 // Static Directory
-app.use(express.static(`media`));
+app.use(express.static(`../media`));
 
 // Create the webfront.
 const server = config.mode === `dev`

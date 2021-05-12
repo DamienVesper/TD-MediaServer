@@ -5,6 +5,7 @@ const axios = require(`axios`);
 const path = require(`path`);
 const http = require(`http`);
 const fs = require(`fs`);
+const { app } = require("../webfront.js");
 
 // Index page.
 router.get(`/`, async (req, res) => res.redirect(config.webPath));
@@ -38,24 +39,7 @@ router.get(`/stream_hls/:streamer`, async (req, res) => {
     const getStreamKey = await axios.get(`https://${config.webfrontName}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);
     if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
 
-    const filePath = `../../media/live/${getStreamKey.data.streamkey}/index.m3u8`;
-
-    fs.readFile(filePath, (error, content) => {
-        res.writeHead(200, { 'Access-Control-Allow-Origin': `*` });
-        if (error) {
-            if (error.code === `ENOENT`) {
-                res.send(`404`);
-            }
-            else {
-                res.writeHead(500);
-                res.end(`Sorry, check with the site admin for error: ${error.code} ..\n`);
-                res.end();
-            }
-        }
-        else {
-            res.end(content, `utf-8`);
-        }
-    });
+    res.sendFile(`/stream_hls/${streamer}`, `media/live/${getStreamKey.data.streamkey}`);
 });
 
 // API

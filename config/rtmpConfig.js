@@ -23,7 +23,7 @@ const rtmpConfig = {
         api_pass: process.env.RTMP_API_PASSWORD
     },
     trans: {
-        ffmpeg: `/usr/local/bin/ffmpeg`,
+        ffmpeg: `/usr/bin/ffmpeg`,
         tasks: [
             {
                 app: `live`,

@@ -32,7 +32,7 @@ router.get(`/stream_source/:streamer`, async (req, res) => {
 });
 
 // HLS Feed.
-router.get(`/stream_hlse/:streamer`, async (req, res) => {
+router.get(`/stream_hls/:streamer`, async (req, res) => {
     const streamer = req.params.streamer.toLowerCase();
 
     const getStreamKey = await axios.get(`https://${config.webfrontName}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);

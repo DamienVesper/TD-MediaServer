@@ -40,7 +40,7 @@ router.get(`/stream_hls/:streamer`, async (req, res) => {
 
     res.setHeader(`content-disposition`, `attachment; filename=index.flv`);
 
-    const filePath = `http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}`;
+    const filePath = `http://localhost:${config.ports.nmsHTTP}/live/${getStreamKey.data.streamkey}/index.m3u8`;
 
     fs.stat(filePath, (err, stats) => {
         if (!stats || err) {

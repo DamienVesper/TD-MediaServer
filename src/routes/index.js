@@ -5,7 +5,8 @@ const axios = require(`axios`);
 const path = require(`path`);
 const http = require(`http`);
 const fs = require(`fs`);
-const { app } = require("../webfront.js");
+const { app } = require(`../webfront.js`);
+const dynamicStatic = require(`express-dynamic-static`)();
 
 // Index page.
 router.get(`/`, async (req, res) => res.redirect(config.webPath));
@@ -39,7 +40,8 @@ router.get(`/stream_hls/:streamer`, async (req, res) => {
     const getStreamKey = await axios.get(`https://${config.webfrontName}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);
     if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
 
-    res.sendFile(`${streamer}`, `../../media/live/${getStreamKey.data.streamkey}`);
+    dynamicStatic.setPath(path.resolve(__dirname, `/media/live/${getStreamKey.data.streamkey}`));
+    res.sendFile(path.resolve(__dirname, `/media/live/${getStreamKey.data.streamkey}/index.m3u8`));
 });
 
 // API

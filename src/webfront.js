@@ -33,9 +33,6 @@ app.use(bodyParser.urlencoded({
 const indexRouter = require(`./routes/index.js`);
 app.use(indexRouter);
 
-// Static Directory
-app.use(serveStatic(path.join(__dirname, `../media`)));
-
 // Create the webfront.
 const server = config.mode === `dev`
     ? http.createServer(app)

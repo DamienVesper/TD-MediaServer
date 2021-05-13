@@ -23,7 +23,7 @@ const rtmpConfig = {
         api_pass: process.env.RTMP_API_PASSWORD
     },
     fission: {
-        ffmpeg: `C:/ffmpeg/bin/ffmpeg.exe`,
+        ffmpeg: `/usr/bin/ffmpeg`,
         tasks: [
             {
                 rule: `live/*`,

@@ -22,13 +22,25 @@ const rtmpConfig = {
         api_user: `admin`,
         api_pass: process.env.RTMP_API_PASSWORD
     },
-    trans: {
-        ffmpeg: `/usr/bin/ffmpeg`,
+    fission: {
+        ffmpeg: `C:/ffmpeg/bin/ffmpeg.exe`,
         tasks: [
             {
-                app: `live`,
-                dash: true,
-                dashFlags: `[f=dash:window_size=3:extra_window_size=5]`
+                rule: `live/*`,
+                model: [
+                    {
+                        ab: `64k`,
+                        vb: `800k`,
+                        vs: `1280x720`,
+                        vf: `30`
+                    },
+                    {
+                        ab: `64k`,
+                        vb: `600k`,
+                        vs: `854x480`,
+                        vf: `30`
+                    }
+                ]
             }
         ]
     }

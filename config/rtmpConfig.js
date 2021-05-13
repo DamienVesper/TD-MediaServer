@@ -30,7 +30,13 @@ const rtmpConfig = {
                 model: [
                     {
                         ab: `64k`,
-                        vb: `600k`,
+                        vb: `700k`,
+                        vs: `1280x720`,
+                        vf: `30`
+                    },
+                    {
+                        ab: `64k`,
+                        vb: `500k`,
                         vs: `854x480`,
                         vf: `30`
                     }

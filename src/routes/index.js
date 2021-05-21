@@ -1,11 +1,11 @@
 const express = require(`express`);
 const router = express.Router();
+
 const config = require(`../../config/config.js`);
 const axios = require(`axios`);
+
 const path = require(`path`);
 const http = require(`http`);
-const fs = require(`fs`);
-const { app } = require(`../webfront.js`);
 
 // Index page.
 router.get(`/`, async (req, res) => res.redirect(config.webPath));

@@ -7,8 +7,6 @@ const axios = require(`axios`);
 const path = require(`path`);
 const rimraf = require(`rimraf`);
 
-const ffmpeg = require(`fluent-ffmpeg`);
-
 const config = require(`../config/config.js`);
 const rtmpConfig = require(`../config/rtmpConfig.js`);
 const fs = require(`fs`);
@@ -73,21 +71,6 @@ server.on(`prePublish`, async (id, streamPath, args) => {
                     streamKey,
                     username: data.username
                 });
-                ffmpeg(`rtmp://127.0.0.1:1935/live/${streamKey}`, { timeout: 432000 }).addOptions([
-                    `-c:v libx264`,
-                    `-c:a aac`,
-                    `-ac 1`,
-                    `-strict -2`,
-                    `-crf 18`,
-                    `-profile:v baseline`,
-                    `-maxrate 400k`,
-                    `-bufsize 1835k`,
-                    `-pix_fmt yuv420p`,
-                    `-hls_time 10`,
-                    `-hls_list_size 6`,
-                    `-hls_wrap 10`,
-                    `-start_number 1`
-                ]).output(`../media/live/${data.username}_hls/index.m3u8`).on(`end`, callback).run();
             }
         });
     }).catch(() => {

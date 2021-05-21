@@ -85,7 +85,7 @@ server.on(`prePublish`, async (id, streamPath, args) => {
                     `-hls_list_size 6`,
                     `-hls_wrap 10`,
                     `-start_number 1`
-                ]).output(`media/live/${data.username}_hls/index.m3u8`).on(`end`, callback).run();
+                ]).output(`../media/live/${data.username}_hls/index.m3u8`).on(`end`, callback).run();
             }
         });
     }).catch(() => {

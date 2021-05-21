@@ -8,7 +8,6 @@ const path = require(`path`);
 const rimraf = require(`rimraf`);
 
 const ffmpeg = require(`fluent-ffmpeg`);
-ffmpeg.setFfmpegPath(`/usr/bin/ffmpeg`);
 
 const config = require(`../config/config.js`);
 const rtmpConfig = require(`../config/rtmpConfig.js`);

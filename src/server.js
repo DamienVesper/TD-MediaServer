@@ -66,8 +66,7 @@ server.on(`prePublish`, async (id, streamPath, args) => {
             if (res.data.errors) {
                 session.reject();
                 log(`red`, res.data.errors);
-            }
-            else {
+            } else {
                 log(`magenta`, `User established to stream with valid stream key.`);
                 generateThumbnail(streamKey);
                 streams.push({
@@ -96,8 +95,7 @@ server.on(`donePublish`, (id, streamPath, args) => {
         if (res.data.errors) {
             session.reject();
             log(`red`, res.data.errors);
-        }
-        else {
+        } else {
             // fs.rmSync(path.join(__dirname, `../media/${streamKey}.png`));
             streams.splice(streams.indexOf(streamerData), 1);
             log(`magenta`, `User Disconnected.`);

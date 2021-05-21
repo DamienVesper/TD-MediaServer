@@ -1,15 +1,19 @@
-require(`dotenv`).config();
+const dotenv = require(`dotenv`);
+dotenv.config();
 
 const NodeMediaServer = require(`node-media-server`);
+
+const axios = require(`axios`);
+const rimraf = require(`rimraf`);
+
+const path = require(`path`);
+const fs = require(`fs`);
+
 const log = require(`./utils/log.js`);
 const generateThumbnail = require(`./utils/generateThumbnail.js`);
-const axios = require(`axios`);
-const path = require(`path`);
-const rimraf = require(`rimraf`);
 
 const config = require(`../config/config.js`);
 const rtmpConfig = require(`../config/rtmpConfig.js`);
-const fs = require(`fs`);
 
 if (fs.existsSync(path.join(__dirname, `../media`))) rimraf.sync(path.join(__dirname, `../media`));
 if (!fs.existsSync(path.join(__dirname, `../media`))) fs.mkdirSync(path.join(__dirname, `../media`));
@@ -109,6 +113,8 @@ const getStreamKeyFromStreamPath = path => {
 };
 
 // Stream end Callback function
-function callback () {
+// eslint-disable-next-line no-unused-vars
+const callback = () => {
     // When stream ends
-}
+    console.log(`Whatever goes here`);
+};

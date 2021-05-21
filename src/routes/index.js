@@ -33,7 +33,7 @@ router.get(`/stream_flv_source/:streamer`, async (req, res) => {
 });
 
 // HLS Source Feed.
-router.get(`/stream_hls_source/:streamer`, async (req, res, next) => {
+router.get(`/stream_hls_source/:streamer/*`, async (req, res, next) => {
     const streamer = req.params.streamer.toLowerCase();
 
     const getStreamKey = await axios.get(`https://${config.webfrontName}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);

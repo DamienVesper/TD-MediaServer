@@ -124,7 +124,6 @@ const getStreamKeyFromStreamPath = path => {
 };
 
 // Stream end Callback function
-function callback() { // do something when stream ends and encoding finshes }
-
-// Export server.
-module.exports = server;
+function callback () {
+    // When stream ends
+}

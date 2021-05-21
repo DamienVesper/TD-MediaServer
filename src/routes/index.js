@@ -39,10 +39,7 @@ router.get(`/stream_hls_source/:streamer/*`, async (req, res, next) => {
     const getStreamKey = await axios.get(`https://${config.webfrontName}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);
     if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
 
-    req.url = req.params.asset;
-    // eslint-disable-next-line prefer-template
-    // eslint-disable-next-line node/no-path-concat
-    express.static(`media/live/${getStreamKey.data.streamkey}/`)(req, res, next);
+    res.redirect(`/live/${getStreamKey.data.streamkey}/index.m3u8`);
 });
 
 // API

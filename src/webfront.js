@@ -19,6 +19,9 @@ app.use(cors({ origin: `*` }));
 const compression = require(`compression`);
 const bodyParser = require(`body-parser`);
 
+// Static Media Folder
+app.use(express.static(`media`));
+
 app.use(compression());
 app.use(bodyParser.json({
     limit: `50mb`

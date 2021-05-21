@@ -42,7 +42,7 @@ router.get(`/stream_hls_source/:streamer/*`, async (req, res, next) => {
     req.url = req.params.asset;
     // eslint-disable-next-line prefer-template
     // eslint-disable-next-line node/no-path-concat
-    express.static(path.join(`media/live/${getStreamKey.data.streamkey}/`))(req, res, next);
+    express.static(`media/live/${getStreamKey.data.streamkey}/`)(req, res, next);
 });
 
 // API

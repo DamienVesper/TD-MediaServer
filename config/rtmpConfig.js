@@ -21,22 +21,6 @@ const rtmpConfig = {
         api: false,
         api_user: `admin`,
         api_pass: process.env.RTMP_API_PASSWORD
-    },
-    fission: {
-        ffmpeg: `/usr/bin/ffmpeg`,
-        tasks: [
-            {
-                rule: `live/*`,
-                model: [
-                    {
-                        ab: `64k`,
-                        vb: `500k`,
-                        vs: `854x480`,
-                        vf: `30`
-                    }
-                ]
-            }
-        ]
     }
 };
 

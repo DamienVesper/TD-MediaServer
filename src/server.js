@@ -30,9 +30,8 @@ setInterval(() => {
 }, 30000)
 
 async function generateThumbnails() {
-    console.log(streams);
     streams.forEach((stream) => {
-        console.log(stream.streamKey)
+        generateThumbnail(stream.streamKey);
     });
 }
 

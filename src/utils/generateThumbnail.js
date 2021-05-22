@@ -6,24 +6,25 @@ const axios = require(`axios`);
 
 module.exports = async (streamkey) => {
 
-    setInterval(async () => {
-        const getStreamData = await axios.get(`http://localhost:${config.ports.nmsHTTP}/api/streams/live/${streamkey}`);
+    setInterval(() => {
+        axios.get(`http://localhost:${config.ports.nmsHTTP}/api/streams/live/${streamkey}`)
+            .then((response) => {
+                if (response.data.isLive === false) return clearInterval()
 
-        if (getStreamData.data.isLive === false) return clearInterval()
+                log(`magenta`, `Generating Stream Thumbnail For: ${streamkey}`);
+                const args = [
+                    `-y`,
+                    `-i`, `http://localhost:${config.ports.nmsHTTP}/live/${streamkey}.flv`,
+                    `-ss`, `00:00:01`,
+                    `-vframes`, `1`,
+                    `-vf`, `scale=-2:300`,
+                    `media/${streamkey}.png`
+                ];
 
-        log(`magenta`, `Generating Stream Thumbnail For: ${streamkey}`);
-        const args = [
-            `-y`,
-            `-i`, `http://localhost:${config.ports.nmsHTTP}/live/${streamkey}.flv`,
-            `-ss`, `00:00:01`,
-            `-vframes`, `1`,
-            `-vf`, `scale=-2:300`,
-            `media/${streamkey}.png`
-        ];
-
-        spawn(cmd, args, {
-            detached: true,
-            stdio: `ignore`
-        }).unref();
+                spawn(cmd, args, {
+                    detached: true,
+                    stdio: `ignore`
+                }).unref();
+            })
     }, 60000)
 };

@@ -24,6 +24,15 @@ require(`./webfront.js`);
 // Livestream array.
 const streams = [];
 
+setInterval(() => {
+    if (streams.length < 0) return;
+    generateThumbnails()
+}, 30000)
+
+async function generateThumbnails() {
+    console.log(streams);
+}
+
 // Log errors in a different color.
 process.on(`uncaughtException`, err => log(`red`, err.stack));
 
@@ -69,15 +78,11 @@ server.on(`prePublish`, async (id, streamPath, args) => {
             } else {
                 log(`magenta`, `User established to stream with valid stream key.`);
                 generateThumbnail(streamKey);
-                setInterval((streamKey) => {
-                    generateThumbnail(streamKey);
-                }, 30000)
                 streams.push({
                     id,
                     streamKey,
                     username: data.username
                 });
-                session.publishStreamPath = `/live/${data.username}`;
             }
         });
     }).catch(() => {

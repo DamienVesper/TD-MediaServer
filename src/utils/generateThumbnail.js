@@ -6,6 +6,21 @@ const axios = require(`axios`);
 
 module.exports = async (streamkey) => {
 
+    log(`magenta`, `Generating Stream Thumbnail For: ${streamkey}`);
+    const args = [
+        `-y`,
+        `-i`, `http://localhost:${config.ports.nmsHTTP}/live/${streamkey}.flv`,
+        `-ss`, `00:00:01`,
+        `-vframes`, `1`,
+        `-vf`, `scale=-2:300`,
+        `media/${streamkey}.png`
+    ];
+
+    spawn(cmd, args, {
+        detached: true,
+        stdio: `ignore`
+    }).unref();
+
     setInterval(() => {
         axios.get(`http://localhost:${config.ports.nmsHTTP}/api/streams/live/${streamkey}`)
             .then((response) => {

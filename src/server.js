@@ -74,6 +74,7 @@ server.on(`prePublish`, async (id, streamPath, args) => {
                     streamKey,
                     username: data.username
                 });
+                session.publishStreamPath = `/live/${data.username}`;
             }
         });
     }).catch(() => {
@@ -108,11 +109,4 @@ server.on(`donePublish`, (id, streamPath, args) => {
 const getStreamKeyFromStreamPath = path => {
     const parts = path.split(`/`);
     return parts[parts.length - 1];
-};
-
-// Stream end Callback function
-// eslint-disable-next-line no-unused-vars
-const callback = () => {
-    // When stream ends
-    console.log(`Whatever goes here`);
 };

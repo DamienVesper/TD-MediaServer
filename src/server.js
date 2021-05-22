@@ -31,6 +31,9 @@ setInterval(() => {
 
 async function generateThumbnails() {
     console.log(streams);
+    streams.forEach((stream) => {
+        console.log(stream)
+    });
 }
 
 // Log errors in a different color.

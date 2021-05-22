@@ -7,7 +7,6 @@ const https = require(`https`);
 const path = require(`path`);
 
 const fs = require(`fs`);
-const log = require(`./utils/log.js`);
 
 const express = require(`express`);
 const app = express();

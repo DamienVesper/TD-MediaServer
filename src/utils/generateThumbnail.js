@@ -6,7 +6,7 @@ const axios = require(`axios`);
 
 module.exports = async (streamkey) => {
 
-    setInterval(() => {
+    setInterval(async () => {
         const getStreamData = await axios.get(`http://localhost:${config.ports.nmsHTTP}/api/streams/live/${getStreamKey.data.streamkey}`);
 
         if (getStreamData.data.isLive == false) return clearInterval()

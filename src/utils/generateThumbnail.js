@@ -6,10 +6,10 @@ const axios = require(`axios`);
 
 module.exports = async (streamkey) => {
 
-    setInterval(async () => {
+    setInterval(() => {
         const getStreamData = await axios.get(`http://localhost:${config.ports.nmsHTTP}/api/streams/live/${getStreamKey.data.streamkey}`);
 
-        if (!getStreamData.data.isLive) return clearInterval()
+        if (getStreamData.data.isLive == false) return clearInterval()
 
         log(`magenta`, `Generating Stream Thumbnail For: ${streamkey}`);
         const args = [

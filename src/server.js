@@ -77,7 +77,7 @@ server.on(`prePublish`, async (id, streamPath, args) => {
                 session.publishStreamPath = `/live/${data.username}`;
                 setInterval(() => {
                     generateThumbnail(streamKey);
-                }, 10 * 60000)
+                }, 1 * 60000)
             }
         });
     }).catch(() => {

@@ -32,7 +32,7 @@ setInterval(() => {
 async function generateThumbnails() {
     console.log(streams);
     streams.forEach((stream) => {
-        console.log(stream)
+        console.log(stream.streamKey)
     });
 }
 

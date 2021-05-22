@@ -68,10 +68,7 @@ server.on(`prePublish`, async (id, streamPath, args) => {
                 log(`red`, res.data.errors);
             } else {
                 log(`magenta`, `User established to stream with valid stream key.`);
-                // generateThumbnail(streamKey);
-                setInterval(() => {
-                    generateThumbnail(streamKey);
-                }, 60000)
+                generateThumbnail(streamKey);
                 streams.push({
                     id,
                     streamKey,

@@ -74,7 +74,6 @@ server.on(`prePublish`, async (id, streamPath, args) => {
                     streamKey,
                     username: data.username
                 });
-                // session.publishStreamPath = `/live/${data.username}`;
             }
         });
     }).catch(() => {

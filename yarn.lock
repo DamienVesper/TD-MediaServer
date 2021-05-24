@@ -2650,10 +2650,10 @@ negotiator@0.6.2:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
-node-media-server@^2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/node-media-server/-/node-media-server-2.2.5.tgz#55ffaf301aad6119ec6593dc3c648af40cda65c5"
-  integrity sha512-Ekfeh7a4FXEmvVjq1jA/Vj88/+b9qK+7boSjTQfc+vMsRY4LvP0Ah8I+0OHYpFYBDZZjiqnvLp1oIKSQuBwLmQ==
+node-media-server@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/node-media-server/-/node-media-server-2.2.6.tgz#255d4719d26da482a3e1c313e94d90fe4e90b235"
+  integrity sha512-OAGKaoNJz978S3vJ7XYeO9Z15Kuam0CccUo6/5ibIxV3muLwTEO7gUeXEbsyNuG+a20KSpvLHbz13wAZuhjhnQ==
   dependencies:
     basic-auth-connect "^1.0.0"
     chalk "^2.4.2"

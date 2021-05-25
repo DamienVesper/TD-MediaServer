@@ -26,10 +26,10 @@ const streams = [];
 
 setInterval(() => {
     if (streams.length < 0) return;
-    generateThumbnails()
-}, 30000)
+    generateThumbnails();
+}, 30000);
 
-async function generateThumbnails() {
+async function generateThumbnails () {
     streams.forEach((stream) => {
         generateThumbnail(stream.streamKey);
     });

@@ -5,6 +5,7 @@
   "main": "gruntfile.js",
   "scripts": {
     "us01": "cross-env NODE_ENV=\"prod\" cross-env SERVER_NAME=\"us01\" pm2 start ./src/server.js",
+    "eu01": "cross-env NODE_ENV=\"prod\" cross-env SERVER_NAME=\"eu01\" pm2 start ./src/server.js",
     "dev": "cross-env NODE_ENV=\"dev\" cross-env SERVER_NAME=\"test\" grunt dev",
     "dev:lint": "eslint . --fix"
   },

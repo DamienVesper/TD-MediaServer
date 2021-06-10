@@ -29,12 +29,12 @@
     "grunt-concurrent": "^3.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-nodemon": "^0.4.2",
-    "mongoose": "^5.12.12",
+    "mongoose": "^5.12.13",
     "node-media-server": "^2.2.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/eslint-parser": "^7.14.4",
+    "@babel/core": "^7.14.5",
+    "@babel/eslint-parser": "^7.14.5",
     "eslint": "^7.28.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.23.4",

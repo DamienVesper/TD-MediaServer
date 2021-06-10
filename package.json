@@ -30,7 +30,7 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-nodemon": "^0.4.2",
     "mongoose": "^5.12.13",
-    "node-media-server": "^2.2.7"
+    "node-media-server": "^2.2.8"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",

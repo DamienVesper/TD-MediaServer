@@ -101,7 +101,7 @@ server.on(`donePublish`, (id: any, streamPath: string, args: any) => {
             session.reject();
             log(`red`, res.data.errors);
         } else {
-            fs.rmdirSync(path.join(__dirname, `../public/${streamerData.username}`));
+            // fs.rmdirSync(path.join(__dirname, `../public/${streamerData.username}`));
             streams.splice(streams.indexOf(streamerData), 1);
             log(`magenta`, `User Disconnected.`);
         }

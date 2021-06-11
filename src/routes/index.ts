@@ -21,8 +21,15 @@ router.get(`/thumbnail/:streamer`, async (req: Express.Request, res: Express.Res
 
     const getStreamKey = await axios.post(`${config.webfront}/api/rtmp-api`, post);
 
-    if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
-    if (!getStreamKey.data.isLive) return res.sendFile(path.join(__dirname, `../../assets/thumbnail.png`));
+    const getStreamData = await axios.get(`http://localhost:${config.ports.nms}/api/streams/live/${getStreamKey.data.streamkey}`, {
+        auth: {
+            username: `admin`,
+            password: process.env.RTMP_API_PASSWORD
+        }
+    });
+
+    if (getStreamData.data.errors) return res.json({ errors: `User does not exist` });
+    if (!getStreamData.data.isLive) return res.sendFile(path.join(__dirname, `../assets/thumbnail.png`));
 
     res.sendFile(path.join(__dirname, `../../media/${getStreamKey.data.streamkey}.png`));
 });

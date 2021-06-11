@@ -9,6 +9,6 @@
         "outDir": "./build",
         "resolveJsonModule": true
     },
-    "include": ["./src/**/*", "./assets/*"],
+    "include": ["./src/**/*"],
     "exclude": ["node_modules"]
 }

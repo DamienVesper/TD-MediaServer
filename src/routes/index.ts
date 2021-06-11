@@ -14,7 +14,12 @@ router.get(`/`, async (req: Express.Request, res: Express.Response) => res.redir
 router.get(`/thumbnail/:streamer`, async (req: Express.Request, res: Express.Response) => {
     const streamer = req.params.streamer.toLowerCase();
 
-    const getStreamKey = await axios.get(`${config.webfront}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);
+    const post = {
+        apiKey: process.env.FRONTEND_API_KEY,
+        streamer: streamer
+    };
+
+    const getStreamKey = await axios.post(`${config.webfront}/api/rtmp-api`, post);
 
     if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
     if (!getStreamKey.data.isLive) return res.sendFile(path.join(__dirname, `../../assets/thumbnail.png`));
@@ -26,7 +31,12 @@ router.get(`/thumbnail/:streamer`, async (req: Express.Request, res: Express.Res
 router.get(`/:streamer`, async (req: Express.Request, res: Express.Response) => {
     const streamer = req.params.streamer.toLowerCase();
 
-    const getStreamKey = await axios.get(`${config.webfront}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);
+    const post = {
+        apiKey: process.env.FRONTEND_API_KEY,
+        streamer: streamer
+    };
+
+    const getStreamKey = await axios.post(`${config.webfront}/api/rtmp-api`, post);
     if (getStreamKey.data.errors) return res.json({ errors: `User does not exist` });
 
     const getStreamData = await axios.get(`http://localhost:${config.ports.nms}/api/streams/live/${getStreamKey.data.streamkey}`);

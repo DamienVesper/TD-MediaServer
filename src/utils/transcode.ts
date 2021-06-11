@@ -1,5 +1,6 @@
 import { spawn } from 'child_process';
 import log from './log';
+import path from 'path';
 
 const cmd = `/usr/bin/ffmpeg`;
 
@@ -24,7 +25,7 @@ const transcode = (username: string, streamKey: string) => {
         `-hls_list_size`, `6`,
         `-hls_wrap`, `10`,
         `-start_number`, `1`,
-        `public/${username}/index.m3u8`
+        `${path.resolve(__dirname, `../../public/${username}/index.m3u8`)}`
     ];
 
     spawn(cmd, args, {

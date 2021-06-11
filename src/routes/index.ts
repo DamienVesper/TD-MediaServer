@@ -23,7 +23,7 @@ router.get(`/thumbnail/:streamer`, async (req: Express.Request, res: Express.Res
 });
 
 // API
-router.get(`/api/:streamer`, async (req: Express.Request, res: Express.Response) => {
+router.get(`/:streamer`, async (req: Express.Request, res: Express.Response) => {
     const streamer = req.params.streamer.toLowerCase();
 
     const getStreamKey = await axios.get(`${config.webfront}/api/rtmp-api/${streamer}/${process.env.FRONTEND_API_KEY}`);

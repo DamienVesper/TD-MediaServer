@@ -13,7 +13,7 @@ interface Args {
 
 const argv = (yargs(hideBin(process.argv)).options({
     mode: { type: `string`, default: `dev` },
-    domain: { type: `string`, default: `eu01` },
+    domain: { type: `string`, default: `eu01` }
 }).argv as Args);
 
 const config = {
@@ -27,7 +27,7 @@ const config = {
         webfront: argv.mode === `prod` ? 8950 : 5000
     },
 
-    webfront: argv.mode === `prod` ? `https://throwdown.tv` : `http://localhost:8080`,    
+    webfront: argv.mode === `prod` ? `https://throwdown.tv` : `http://localhost:8080`,
     version
 };
 

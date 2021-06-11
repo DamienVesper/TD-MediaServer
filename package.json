@@ -2,12 +2,12 @@
   "name": "throwdown-rtmp",
   "version": "1.0.0",
   "description": "RTMP server for Throwdown.TV",
-  "main": "build/src/index.js",
+  "main": "build/src/server.js",
   "scripts": {
     "build": "tsc",
-    "dev": "node ./build/src/index.js --mode dev",
+    "dev": "node ./build/src/server.js --mode dev",
     "dist": "yarn build && yarn dev",
-    "eu01": "node ./build/src/index.js --mode prod --domain eu01",
+    "eu01": "node ./build/src/server.js --mode prod --domain eu01",
     "dev:lint": "eslint . --fix --ext .ts"
   },
   "repository": {
@@ -39,6 +39,8 @@
   "dependencies": {
     "axios": "^0.21.1",
     "express": "^4.17.1",
+    "ffmpeg-static": "^4.3.0",
+    "fs": "^0.0.1-security",
     "helmet": "^4.6.0",
     "node-media-server": "^2.2.8"
   }

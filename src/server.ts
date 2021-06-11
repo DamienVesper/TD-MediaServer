@@ -11,10 +11,15 @@ import generateThumbnail from './utils/generateThumbnail';
 
 import config from '../config/config';
 import rtmpConfig from '../config/rtmpConfig';
+import transcode from './utils/transcode';
 
-
+// Media Folder
 if (fs.existsSync(path.resolve(__dirname, `../media`))) rimraf.sync(path.resolve(__dirname, `../media`));
 if (!fs.existsSync(path.resolve(__dirname, `../media`))) fs.mkdirSync(path.resolve(__dirname, `../media`));
+
+// Public Folder
+if (fs.existsSync(path.resolve(__dirname, `../public`))) rimraf.sync(path.resolve(__dirname, `../public`));
+if (!fs.existsSync(path.resolve(__dirname, `../public`))) fs.mkdirSync(path.resolve(__dirname, `../public`));
 
 const server = new NodeMediaServer(rtmpConfig);
 import(`./webfront.js`);
@@ -55,12 +60,10 @@ server.on(`prePublish`, async (id: any, streamPath: string, args) => {
             return session.reject();
         }
 
-        
         // axios.post(`${config.webPath}/api/send-notifications`, {
         //     streamer: data.username,
         //     apiKey: process.env.NOTIFICATION_API_KEY
         // });
-        
 
         axios.post(`${config.webfront}/api/change-streamer-status`, {
             streamer: data.username,
@@ -74,6 +77,7 @@ server.on(`prePublish`, async (id: any, streamPath: string, args) => {
             } else {
                 log(`magenta`, `User established to stream with valid stream key.`);
                 generateThumbnail(streamKey);
+                transcode(data.username, streamKey);
                 streams.push({
                     id,
                     streamKey,
@@ -101,7 +105,7 @@ server.on(`donePublish`, (id: any, streamPath: string, args: any) => {
             session.reject();
             log(`red`, res.data.errors);
         } else {
-            // fs.rmSync(path.join(__dirname, `../media/${streamKey}.png`));
+            fs.rmdirSync(path.join(__dirname, `../public/${streamerData.username}`));
             streams.splice(streams.indexOf(streamerData), 1);
             log(`magenta`, `User Disconnected.`);
         }
@@ -114,4 +118,3 @@ const getStreamKeyFromStreamPath = (path: string) => {
     const parts = path.split(`/`);
     return parts[parts.length - 1];
 };
-

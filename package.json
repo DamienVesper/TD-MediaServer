@@ -2,7 +2,7 @@
   "name": "throwdown-rtmp",
   "version": "1.0.0",
   "description": "RTMP server for Throwdown.TV",
-  "main": "gruntfile.js",
+  "main": "build/src/index.js",
   "scripts": {
     "us01": "cross-env NODE_ENV=\"prod\" cross-env SERVER_NAME=\"us01\" pm2 start ./src/server.js",
     "eu01": "cross-env NODE_ENV=\"prod\" cross-env SERVER_NAME=\"eu01\" pm2 start ./src/server.js",

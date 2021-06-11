@@ -46,7 +46,7 @@ server.on(`prePublish`, async (id: any, streamPath: string, args) => {
     const streamKey = getStreamKeyFromStreamPath(streamPath);
 
     const session = server.getSession(id);
-    const streamerData = await axios.get(`${config.webfront}/api/stream-key/${streamKey}`);
+    const streamerData = await axios.get(`${config.webfront}/api/stream-key/${process.env.FRONTEND_API_KEY}/${streamKey}`);
     const data = streamerData.data;
 
     if (!data) {
@@ -98,8 +98,8 @@ server.on(`donePublish`, (id: any, streamPath: string, args: any) => {
         streamerStatus: false
     }).then(res => {
         if (res.data.errors) {
-            session.reject();
             log(`red`, res.data.errors);
+            return session.reject();
         } else {
             // fs.rmdirSync(path.join(__dirname, `../public/${streamerData.username}`));
             streams.splice(streams.indexOf(streamerData), 1);

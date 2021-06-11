@@ -13,4 +13,4 @@ app.use(indexRouter);
 app.use(helmet({ contentSecurityPolicy: false }));
 
 const server = HTTP.createServer(app);
-server.listen(config.port, () => log(`green`, `Webfront bound to port ${config.port}.`));
+server.listen(config.ports.webfront, () => log(`green`, `Webfront bound to port ${config.ports.webfront}.`));

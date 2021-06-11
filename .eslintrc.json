@@ -9,15 +9,15 @@
         "standard",
         "eslint:recommended"
     ],
-    "parser": "@babel/eslint-parser",
+    "parser": "@typescript-eslint/parser",
     "plugins": [
+        "@typescript-eslint",
         "import",
         "node",
         "promise"
     ],
     "parserOptions": {
-        "ecmaVersion": 6,
-        "requireConfigFile": false
+        "ecmaVersion": 6
     },
     "rules": {
         "indent": ["error", 4, {

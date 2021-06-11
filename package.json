@@ -4,9 +4,10 @@
   "description": "RTMP server for Throwdown.TV",
   "main": "build/src/index.js",
   "scripts": {
-    "us01": "cross-env NODE_ENV=\"prod\" cross-env SERVER_NAME=\"us01\" pm2 start ./src/server.js",
-    "eu01": "cross-env NODE_ENV=\"prod\" cross-env SERVER_NAME=\"eu01\" pm2 start ./src/server.js",
-    "dev": "cross-env NODE_ENV=\"dev\" cross-env SERVER_NAME=\"test\" grunt dev",
+    "build": "tsc",
+    "dev": "node ./build/src/index.js --mode dev",
+    "dist": "yarn build && yarn dev",
+    "eu01": "node ./build/src/index.js --mode prod --domain eu01",
     "dev:lint": "eslint . --fix --ext .ts"
   },
   "repository": {

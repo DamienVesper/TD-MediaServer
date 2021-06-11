@@ -23,7 +23,7 @@ const config = {
     domain: `${argv.domain}.throwdown.tv`,
 
     ports: {
-        nmsHTTP: argv.mode === `prod` ? 8945 : 3000,
+        nms: argv.mode === `prod` ? 8945 : 3000,
         webfront: argv.mode === `prod` ? 8950 : 5000
     },
 

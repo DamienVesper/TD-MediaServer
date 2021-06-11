@@ -1,7 +1,7 @@
 import { spawn } from 'child_process';
-import ffmpeg from 'ffmpeg-static';
-
 import log from './log';
+
+const cmd = `/usr/bin/ffmpeg`;
 
 const transcode = (username: string, streamKey: string) => {
     log(`magenta`, `Transcoding: ${streamKey}`);
@@ -27,7 +27,7 @@ const transcode = (username: string, streamKey: string) => {
         `public/${username}/index.m3u8`
     ];
 
-    spawn(ffmpeg, args, {
+    spawn(cmd, args, {
         detached: true,
         stdio: `ignore`
     }).unref();

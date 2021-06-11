@@ -1,8 +1,9 @@
 import { spawn } from 'child_process';
 import config from '../../config/config';
-import ffmpeg from 'ffmpeg-static';
 
 import log from './log';
+
+const cmd = `/usr/bin/ffmpeg`;
 
 const generateThumbnail = (streamKey: string) => {
     log(`magenta`, `Generating Stream Thumbnail For: ${streamKey}`);
@@ -15,7 +16,7 @@ const generateThumbnail = (streamKey: string) => {
         `media/${streamKey}.png`
     ];
 
-    spawn(ffmpeg, args, {
+    spawn(cmd, args, {
         detached: true,
         stdio: `ignore`
     }).unref();

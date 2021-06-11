@@ -46,48 +46,44 @@ server.on(`prePublish`, async (id: any, streamPath: string, args) => {
     const streamKey = getStreamKeyFromStreamPath(streamPath);
 
     const session = server.getSession(id);
-    axios.get(`${config.webfront}/api/stream-key/${streamKey}`).then(res => {
-        const data = res.data;
+    const streamerData = await axios.get(`${config.webfront}/api/stream-key/${streamKey}`);
+    const data = streamerData.data;
 
-        if (!data) {
-            log(`red`, `User attempted to stream with invalid stream key.`);
-            return session.reject();
+    if (!data) {
+        log(`red`, `User attempted to stream with invalid stream key.`);
+        return session.reject();
+    }
+
+    // If the person cannot stream or the credentials were not verified by the server, then reject the session request.
+    if (data.isSuspended || !data.verified) {
+        log(`red`, `User attempted to stream while being suspended or unverified.`);
+        return session.reject();
+    }
+
+    // axios.post(`${config.webPath}/api/send-notifications`, {
+    //     streamer: data.username,
+    //     apiKey: process.env.NOTIFICATION_API_KEY
+    // });
+
+    axios.post(`${config.webfront}/api/change-streamer-status`, {
+        streamer: data.username,
+        apiKey: process.env.FRONTEND_API_KEY,
+        streamerStatus: true,
+        rtmpServer: process.env.SERVER_NAME
+    }).then(res => {
+        if (res.data.errors) {
+            session.reject();
+            log(`red`, res.data.errors);
+        } else {
+            log(`magenta`, `User established to stream with valid stream key.`);
+            generateThumbnail(streamKey);
+            transcode(data.username, streamKey);
+            streams.push({
+                id,
+                streamKey,
+                username: data.username
+            });
         }
-
-        // If the person cannot stream or the credentials were not verified by the server, then reject the session request.
-        if (data.isSuspended || !data.verified) {
-            log(`red`, `User attempted to stream while being suspended or unverified.`);
-            return session.reject();
-        }
-
-        // axios.post(`${config.webPath}/api/send-notifications`, {
-        //     streamer: data.username,
-        //     apiKey: process.env.NOTIFICATION_API_KEY
-        // });
-
-        axios.post(`${config.webfront}/api/change-streamer-status`, {
-            streamer: data.username,
-            apiKey: process.env.FRONTEND_API_KEY,
-            streamerStatus: true,
-            rtmpServer: process.env.SERVER_NAME
-        }).then(res => {
-            if (res.data.errors) {
-                session.reject();
-                log(`red`, res.data.errors);
-            } else {
-                log(`magenta`, `User established to stream with valid stream key.`);
-                generateThumbnail(streamKey);
-                transcode(data.username, streamKey);
-                streams.push({
-                    id,
-                    streamKey,
-                    username: data.username
-                });
-            }
-        });
-    }).catch(() => {
-        log(`red`, `Failed to verify streamer.`);
-        session.reject();
     });
 });
 

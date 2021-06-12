@@ -12,7 +12,7 @@ const transcode = (username: string, streamKey: string) => {
     const args = [
         `-v`, `verbose`,
         `-y`,
-        `-i`, `http://127.0.0.1:1935/live/${streamKey}`,
+        `-i`, `rtmp://127.0.0.1:1935/live/${streamKey}`,
         `-c:v`, `-libx264`,
         `-c:a`, `aac`,
         `-ac`, `1`,

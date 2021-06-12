@@ -69,7 +69,7 @@ server.on(`prePublish`, async (id: any, streamPath: string, args) => {
         streamer: data.username,
         apiKey: process.env.FRONTEND_API_KEY,
         streamerStatus: true,
-        rtmpServer: process.env.SERVER_NAME
+        rtmpServer: config.subdomain
     }).then(res => {
         if (res.data.errors) {
             session.reject();

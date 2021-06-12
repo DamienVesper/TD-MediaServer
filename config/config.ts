@@ -20,6 +20,8 @@ const config = {
     name,
     mode: argv.mode,
 
+    subdomain: argv.domain,
+
     domain: `${argv.domain}.throwdown.tv`,
 
     ports: {

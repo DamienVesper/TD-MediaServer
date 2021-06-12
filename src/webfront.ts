@@ -7,9 +7,11 @@ import express from 'express';
 import helmet from 'helmet';
 
 import indexRouter from './routes/index';
+import apiRouter from './routes/api';
 
 const app: express.Application = express();
-app.use(indexRouter);
+app.use(`/`, indexRouter);
+app.use(`/api`, apiRouter);
 app.use(helmet({ contentSecurityPolicy: false }));
 
 const server = HTTP.createServer(app);

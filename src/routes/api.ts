@@ -47,7 +47,7 @@ router.get(`/status/:streamer`, async (req: Express.Request, res: Express.Respon
         viewers: getStreamData.data.viewers
     };
 
-    res.json(data);
+    res.jsonp(data);
 });
 
 export default router;

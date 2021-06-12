@@ -2,7 +2,7 @@ import { spawn } from 'child_process';
 import log from './log';
 import path from 'path';
 import fs from 'fs';
-import ffmpeg from 'ffmpeg-static';
+import * as ffmpeg from 'ffmpeg-static';
 
 const transcode = (username: string, streamKey: string) => {
     log(`magenta`, `Transcoding: ${streamKey}`);
@@ -10,7 +10,6 @@ const transcode = (username: string, streamKey: string) => {
         fs.mkdirSync(path.resolve(__dirname, `../../public/${username}`));
     }
     const args = [
-        `-v`, `verbose`,
         `-y`,
         `-i`, `rtmp://127.0.0.1:1935/live/${streamKey}`,
         `-c:v`, `-libx264`,
@@ -27,10 +26,10 @@ const transcode = (username: string, streamKey: string) => {
         `-hls_list_size`, `6`,
         `-hls_wrap`, `10`,
         `-start_number`, `1`,
-        `${path.resolve(__dirname, `../../public/${username}/index.m3u8`)}`
+        `public/${username}/index.m3u8`
     ];
 
-    spawn(ffmpeg, args, {
+    spawn(ffmpeg.default, args, {
         detached: true,
         stdio: `ignore`
     }).unref();

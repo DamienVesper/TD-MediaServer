@@ -2,7 +2,7 @@ import { spawn } from 'child_process';
 import config from '../../config/config';
 import path from 'path';
 import log from './log';
-import ffmpeg from 'ffmpeg-static';
+import * as ffmpeg from 'ffmpeg-static';
 
 const generateThumbnail = (streamKey: string) => {
     log(`magenta`, `Generating Stream Thumbnail For: ${streamKey}`);
@@ -14,8 +14,7 @@ const generateThumbnail = (streamKey: string) => {
         `-vf`, `scale=-2:300`,
         `${path.resolve(__dirname, `../../media/${streamKey}.png`)}`
     ];
-
-    spawn(ffmpeg, args, {
+    spawn(ffmpeg.default, args, {
         detached: true,
         stdio: `ignore`
     }).unref();

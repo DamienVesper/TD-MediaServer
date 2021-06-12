@@ -49,7 +49,7 @@ server.on(`prePublish`, async (id: any, streamPath: string, args) => {
     const streamerData = await axios.get(`${config.webfront}/api/stream-key/${process.env.FRONTEND_API_KEY}/${streamKey}`);
     const data = streamerData.data;
 
-    if (!data) {
+    if (!data || streamerData.status === 404) {
         log(`red`, `User attempted to stream with invalid stream key.`);
         return session.reject();
     }

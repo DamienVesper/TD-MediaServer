@@ -35,7 +35,7 @@ const transcode = (username: string, streamKey: string) => {
         `-strict -2`,
         `-crf 18`,
         `-profile:v baseline`,
-        `-maxrate 400k`,
+        `-maxrate 100k`,
         `-bufsize 1835k`,
         `-pix_fmt yuv420p`,
         `-hls_time 10`,

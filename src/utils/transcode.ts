@@ -1,4 +1,3 @@
-import { spawn } from 'child_process';
 import log from './log';
 import path from 'path';
 import fs from 'fs';
@@ -29,8 +28,8 @@ const transcode = (username: string, streamKey: string) => {
     };
 
     ffmpeg(`rtmp://127.0.0.1:1935/live/${streamKey}`, { timeout: 432000 }).addOptions([
-        `-c:v libx264`,
-        `-c:a aac`,
+        `-c:v copy`,
+        `-c:a copy`,
         `-ac 1`,
         `-strict -2`,
         `-crf 18`,

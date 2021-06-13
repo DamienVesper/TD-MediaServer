@@ -11,6 +11,7 @@ import generateThumbnail from './utils/generateThumbnail';
 
 import config from '../config/config';
 import rtmpConfig from '../config/rtmpConfig';
+// eslint-disable-next-line no-unused-vars
 import transcode from './utils/transcode';
 
 // Media Folder

@@ -77,7 +77,8 @@ server.on(`prePublish`, async (id: any, streamPath: string, args) => {
         } else {
             log(`magenta`, `User established to stream with valid stream key.`);
             generateThumbnail(streamKey);
-            transcode(data.username, streamKey);
+            // DISABLE TRANSCODING
+            // transcode(data.username, streamKey);
             streams.push({
                 id,
                 streamKey,

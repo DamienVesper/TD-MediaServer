@@ -98,7 +98,7 @@ server.on(`donePublish`, (id: any, streamPath: string, args: any) => {
         streamer: streamerData.username,
         apiKey: process.env.FRONTEND_API_KEY,
         streamerStatus: false,
-        rtmpServer: config.subdomain
+        rtmpServer: `live`
     }).then(res => {
         if (res.data.errors) {
             log(`red`, res.data.errors);

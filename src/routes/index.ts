@@ -2,9 +2,6 @@ import Express from 'express';
 
 import config from '../../config/config';
 import axios from 'axios';
-
-import http from 'http';
-import throttle from 'stream-throttle';
 import request from 'request-promise';
 
 const router: Express.Router = Express.Router();

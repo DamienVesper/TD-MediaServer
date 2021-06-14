@@ -4,8 +4,12 @@ import config from '../../config/config';
 import axios from 'axios';
 
 import http from 'http';
+import throttle from 'stream-throttle';
+import request from 'request-promise';
 
 const router: Express.Router = Express.Router();
+
+const th = new throttle.Throttle({ rate: 10240000 });
 
 // Index page.
 router.get(`/`, async (req: Express.Request, res: Express.Response) => res.redirect(config.webfront));
@@ -22,7 +26,7 @@ router.get(`/flv/:streamer`, async (req, res) => {
 
     res.setHeader(`content-disposition`, `attachment; filename=index.flv`);
 
-    http.get(`http://localhost:${config.ports.nms}/live/${getStreamKey.data.streamkey}.flv`, response => response.pipe(res));
+    request.get(`http://localhost:${config.ports.nms}/live/${getStreamKey.data.streamkey}.flv`, { highWaterMark: 1024000, encoding: null }).pipe(th).pipe(res, { highWaterMark: 1024000 });
 });
 
 export default router;

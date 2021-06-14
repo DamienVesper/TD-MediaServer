@@ -40,12 +40,16 @@
   "dependencies": {
     "axios": "^0.21.1",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
     "ffmpeg-static": "^4.3.0",
     "fluent-ffmpeg": "^2.1.2",
     "fs": "^0.0.1-security",
     "helmet": "^4.6.0",
     "mkdirp": "^1.0.4",
-    "node-media-server": "^2.2.8"
+    "node-media-server": "^2.2.8",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "stream-throttle": "^0.1.3"
   }
 }

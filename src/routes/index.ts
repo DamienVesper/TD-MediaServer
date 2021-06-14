@@ -21,7 +21,7 @@ router.get(`/flv/:streamer`, async (req, res) => {
 
     res.setHeader(`content-disposition`, `attachment; filename=index.flv`);
 
-    request.get(`http://localhost:${config.ports.nms}/live/${getStreamKey.data.streamkey}.flv`, { highWaterMark: 1024000, encoding: null }).pipe(res, { highWaterMark: 1024000 });
+    await request.get(`http://localhost:${config.ports.nms}/live/${getStreamKey.data.streamkey}.flv`, { highWaterMark: 1024000, encoding: null }).pipe(res, { highWaterMark: 1024000 });
 });
 
 export default router;

@@ -20,8 +20,9 @@ router.get(`/flv/:streamer`, async (req, res) => {
     if (getStreamKey.data.errors || getStreamKey.status === 404) return res.json({ errors: `User does not exist` });
 
     res.setHeader(`content-disposition`, `attachment; filename=index.flv`);
+    res.setHeader(`content-type`, `video/x-flv`);
 
-    await request.get(`http://localhost:${config.ports.nms}/live/${getStreamKey.data.streamkey}.flv`, { highWaterMark: 1024000, encoding: null }).pipe(res, { highWaterMark: 1024000 });
+    await request.get(`http://localhost:${config.ports.nms}/live/${getStreamKey.data.streamkey}.flv`).pipe(res);
 });
 
 export default router;

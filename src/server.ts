@@ -28,13 +28,6 @@ import(`./webfront.js`);
 // Livestream array.
 const streams = [];
 
-setInterval(() => {
-    if (streams.length < 0) return;
-    generateThumbnails();
-}, 6e4);
-
-const generateThumbnails = () => streams.forEach((stream) => generateThumbnail(stream.streamKey));
-
 // Log errors in a different color.
 process.on(`uncaughtException`, err => log(`red`, err.stack));
 

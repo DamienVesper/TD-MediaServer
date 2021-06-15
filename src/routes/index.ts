@@ -1,8 +1,6 @@
 import Express from 'express';
 
 import config from '../../config/config';
-import axios from 'axios';
-import request from 'request-promise';
 
 const router: Express.Router = Express.Router();
 
@@ -11,18 +9,7 @@ router.get(`/`, async (req: Express.Request, res: Express.Response) => res.redir
 
 // FLV Source Feed.
 router.get(`/flv/:streamer`, async (req, res) => {
-    const streamer = req.params.streamer.toLowerCase();
-    const post = {
-        apiKey: process.env.FRONTEND_API_KEY,
-        streamer: streamer
-    };
-    const getStreamKey = await axios.post(`${config.webfront}/api/rtmp-api`, post);
-    if (getStreamKey.data.errors || getStreamKey.status === 404) return res.json({ errors: `User does not exist` });
-
-    res.setHeader(`content-disposition`, `attachment; filename=index.flv`);
-    res.setHeader(`content-type`, `video/x-flv`);
-
-    await request.get(`http://localhost:${config.ports.nms}/live/${getStreamKey.data.streamkey}.flv`).pipe(res);
+    res.status(403).send(`FLV Support Depricated.`);
 });
 
 export default router;

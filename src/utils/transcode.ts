@@ -28,13 +28,13 @@ const transcode = (username: string, streamKey: string) => {
     };
 
     ffmpeg(`rtmp://127.0.0.1:1935/live/${streamKey}`, { timeout: 432000 }).addOptions([
-        `-c:v h264`,
+        `-c:v copy`,
         `-c:a copy`,
         `-preset:v ultrafast`,
         `-ac 1`,
         `-strict -2`,
         `-crf 18`,
-        `-profile:v baseline`,
+        // `-profile:v baseline`,
         `-maxrate 100k`,
         `-bufsize 1835k`,
         `-pix_fmt yuv420p`,

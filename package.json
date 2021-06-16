@@ -9,6 +9,7 @@
     "dist": "yarn build && yarn dev",
     "eu01": "node ./build/src/server.js --mode prod --domain eu01",
     "eu02": "node ./build/src/server.js --mode prod --domain eu02",
+    "us01": "node ./build/src/server.js --mode prod --domain us01",
     "dev:lint": "eslint . --fix --ext .ts"
   },
   "repository": {

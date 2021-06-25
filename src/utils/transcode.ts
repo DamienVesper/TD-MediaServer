@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import mkdirp from 'mkdirp';
 import ffmpeg from 'fluent-ffmpeg';
+import rimraf from 'rimraf';
 
 const transcode = (username: string, streamKey: string) => {
     log(`magenta`, `Transcoding: ${streamKey}`);
@@ -23,6 +24,7 @@ const transcode = (username: string, streamKey: string) => {
                         fs.unlinkSync(`${path.resolve(__dirname, `../../public/${username}`)}/${filename}`);
                     }
                 });
+                rimraf.sync(path.resolve(__dirname, `../../public/${username}`));
             }
         });
     };

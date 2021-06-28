@@ -41,9 +41,9 @@ const transcode = (username: string, streamKey: string) => {
         `-bufsize 1835k`,
         `-pix_fmt yuv420p`,
         `-hls_time 10`,
-        `-hls_list_size 6`,
+        `-hls_list_size 0`,
         `-hls_wrap 10`,
-        `-start_number 1`
+        `-start_number 0`
     ]).output(`${path.resolve(__dirname, `../../public/${username}`)}/index.m3u8`).on(`end`, end).on(`error`, (error, stdout, stderr) => { log(`red`, `ERROR: ${error} STDERR: ${stderr}`); }).run();
 };
 export default transcode;

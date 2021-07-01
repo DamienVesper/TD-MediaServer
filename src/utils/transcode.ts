@@ -40,7 +40,6 @@ const transcode = (username: string, streamKey: string) => {
         `-s 720x480`,
         `-maxrate 100k`,
         `-bufsize 1835k`,
-        `-pix_fmt yuv420p`,
         `-hls_time 1`,
         `-hls_list_size 3`,
         `-hls_flags delete_segments`,

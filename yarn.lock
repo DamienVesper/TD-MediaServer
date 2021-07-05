@@ -1659,7 +1659,7 @@ minimatch@^3.0.4:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimist@^1.2.0:
+minimist@^1.2.0, minimist@^1.2.5:
   version "1.2.5"
   resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.5.tgz"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
@@ -1704,16 +1704,17 @@ negotiator@0.6.2:
   resolved "https://registry.npmjs.org/negotiator/-/negotiator-0.6.2.tgz"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
-node-media-server@^2.2.8:
-  version "2.2.8"
-  resolved "https://registry.npmjs.org/node-media-server/-/node-media-server-2.2.8.tgz"
-  integrity sha512-sLusJjFVJ3mWeDMHnkyx1gitPjsMcWbhzlXT7wC8gRRjP0HKmY3d8wGLjl0s+JVPB6ruwSZw0mAwntOwrOCnRw==
+node-media-server@^2.3.6:
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/node-media-server/-/node-media-server-2.3.6.tgz#bd552bb33b6610cf8852c783ff0160fd8f392b5e"
+  integrity sha512-MrM8hehimmgYhcS0uWmYffVUVbetn/UQExG2pYsjQME25G/dH44t2p2zfzFsEL9m1mc3qXgu7wZp92pn6xEnYg==
   dependencies:
     basic-auth-connect "^1.0.0"
     chalk "^2.4.2"
     dateformat "^3.0.3"
     express "^4.16.4"
     lodash ">=4.17.13"
+    minimist "^1.2.5"
     mkdirp "1.0.3"
     ws "^7.4.6"
 

@@ -48,7 +48,7 @@
     "fs": "^0.0.1-security",
     "helmet": "^4.6.0",
     "mkdirp": "^1.0.4",
-    "node-media-server": "^2.3.6",
+    "node-media-server": "^2.3.8",
     "request": "^2.88.2",
     "request-promise": "^4.2.6"
   }

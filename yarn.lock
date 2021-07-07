@@ -1719,10 +1719,10 @@ negotiator@0.6.2:
   resolved "https://registry.npmjs.org/negotiator/-/negotiator-0.6.2.tgz"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
-node-media-server@^2.3.6:
-  version "2.3.6"
-  resolved "https://registry.yarnpkg.com/node-media-server/-/node-media-server-2.3.6.tgz#bd552bb33b6610cf8852c783ff0160fd8f392b5e"
-  integrity sha512-MrM8hehimmgYhcS0uWmYffVUVbetn/UQExG2pYsjQME25G/dH44t2p2zfzFsEL9m1mc3qXgu7wZp92pn6xEnYg==
+node-media-server@^2.3.8:
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/node-media-server/-/node-media-server-2.3.8.tgz#05ad4d1ea9372d4dd5f7b72fb5f1c00da44ce78b"
+  integrity sha512-IWji6X4RQHoiAu0mTojtQ7dznrdsHRahXG51d8um0bjFKkmtJHN3W9oA2fVtFtDrAYMC5bG9GvGDO2qdZtgzww==
   dependencies:
     basic-auth-connect "^1.0.0"
     chalk "^2.4.2"

@@ -28,7 +28,7 @@
     "@types/rimraf": "^3.0.1",
     "@types/yargs": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
-    "@typescript-eslint/parser": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.3",
     "dotenv": "^10.0.0",
     "eslint": "^7.30.0",
     "eslint-config-standard": "^16.0.3",
